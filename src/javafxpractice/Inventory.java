@@ -7,6 +7,8 @@
 package javafxpractice;
 
 import java.util.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -20,56 +22,50 @@ public class Inventory {
             ArrayList<Part> allParts = new ArrayList<>();
             
     public
+            ArrayList<Product> getProductsList() {
+                return this.products;
+            }
+            ArrayList<Part> getPartsList() {
+                return this.allParts;
+            }
             void addProduct(Product product) {
-                //add product to arraylist
+                products.add(product);
             }
             boolean removeProduct(int number) {
-                //go through arraylist
-                //if number is found
-                //remove associated product
-                //return true
-                //if number is not found
-                //return false
-                return true;
+                return products.remove(lookUpProduct(number));
             }
             Product lookUpProduct(int number) {
-                //go through arraylist
-                //if number is found
-                //return associated product
-                //if number is not found
-                //???
-                Product temporaryProduct = new Product();
-                return temporaryProduct;
+                while (products.iterator().hasNext()) {
+                    Product temporaryProduct = products.iterator().next();
+                    if (number == temporaryProduct.getProductID()) {
+                        return temporaryProduct;
+                    }
+                }
+                Product errorProduct = new Product();
+                return errorProduct;
             }
             void updateProduct(int number) {
-                //go through arraylist
-                //if number is found
-                //update associated product
+                removeProduct(number);
+                addProduct(lookUpProduct(number));
             }
             void addPart(Part part){
-                //add part to the arraylist
+                allParts.add(part);
             }
             boolean deletePart(Part part) {
-                //go through arraylist
-                //if part is found
-                //delete part
-                //return true
-                //if part is not found
-                //return false
-                return true;
+                return allParts.remove(part);
             }
             Part lookUpPart(int number) {
-                //go through arraylist
-                //if associated part is found
-                //return part
-                //if associated part is not found
-                //???
-                Part temporaryPart = new Part();
-                return temporaryPart;
+                while (allParts.iterator().hasNext()) {
+                    Part temporaryPart = allParts.iterator().next();
+                    if (number == temporaryPart.getPartID()) {
+                        return temporaryPart;
+                    }
+                }
+                Part errorPart = new Part();
+                return errorPart;
             }
             void updatePart(int number) {
-                //go through arraylist
-                //if associated part is found
-                //update part
+                deletePart(lookUpPart(number));
+                addPart(lookUpPart(number));
             }
 }

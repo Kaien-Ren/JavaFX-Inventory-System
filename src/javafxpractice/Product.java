@@ -16,7 +16,7 @@ import java.util.*;
 public class Product {
     
     private
-            ArrayList<Part> associatedParts = new ArrayList<Part>();
+            ArrayList<Part> associatedParts = new ArrayList<>();
             int productID;
             String name;
             double price;
@@ -25,6 +25,9 @@ public class Product {
             int max;
     
     public
+            ArrayList<Part> getAssociatedPartsList() {
+                return this.associatedParts;
+            }
             void setName(String string) {
                 this.name = string;
             }
@@ -56,23 +59,23 @@ public class Product {
                 return this.max;
             }
             void addAssociatedPart(Part part) {
-                //add part to ArrayList
+                associatedParts.add(part);
+            }
+            boolean removeAssociatedPart(Part part) {
+                return associatedParts.remove(part);
             }
             boolean removeAssociatedPart(int number) {
-                //if found
-                //remove part from ArrayList
-                //return true
-                //if not found
-                //return false
-                return true;
+                return removeAssociatedPart(lookUpAssociatedPart(number));
             }
             Part lookUpAssociatedPart(int number) {
-                //go through ArrayList
-                //check if "number" is equal to "productID"
-                //if found
-                //return associated part
-                Part temporaryPart = new Part();
-                return temporaryPart;
+                while (associatedParts.iterator().hasNext()) {
+                    Part temporaryPart = associatedParts.iterator().next();
+                    if (number == temporaryPart.getPartID()) {
+                        return temporaryPart;
+                    }
+                }
+                Part errorPart = new Part();
+                return errorPart;
             }
             void setProductID(int number) {
                 this.productID = number;

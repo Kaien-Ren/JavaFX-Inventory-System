@@ -30,12 +30,103 @@ public class JavaFXPractice extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-
+        
+        // // // // // // // // // // // // // // // // //
+        // Initializing Inventory, Products, and Parts  //
+        // // // // // // // // // // // // // // // // //
+        
+        Inventory inventory = new Inventory();
+        
+        Part part1 = new Part();
+        part1.setPartID(1);
+        Part part2 = new Part();
+        part2.setPartID(2);
+        Part part3 = new Part();
+        part3.setPartID(3);
+        Part part4 = new Part();
+        part4.setPartID(4);
+        Part part5 = new Part();
+        part5.setPartID(5);
+        Part part6 = new Part();
+        part6.setPartID(6);
+        Part part7 = new Part();
+        part7.setPartID(7);
+        Part part8 = new Part();
+        part8.setPartID(8);
+        Part part9 = new Part();
+        part9.setPartID(9);
+        
+        Product product1 = new Product();
+        Product product2 = new Product();
+        Product product3 = new Product();
+        Product product4 = new Product();
+        
+        product1.addAssociatedPart(part1);
+        product1.addAssociatedPart(part2);
+        product1.addAssociatedPart(part3);
+        
+        product2.addAssociatedPart(part4);
+        product2.addAssociatedPart(part5);
+        
+        product3.addAssociatedPart(part6);
+        product3.addAssociatedPart(part7);
+        
+        product4.addAssociatedPart(part8);
+        product4.addAssociatedPart(part9);
+        
+        inventory.addPart(part1);
+        inventory.addPart(part2);
+        inventory.addPart(part3);
+        inventory.addPart(part4);
+        inventory.addPart(part5);
+        inventory.addPart(part6);
+        inventory.addPart(part7);
+        inventory.addPart(part8);
+        inventory.addPart(part9);
+        
+        inventory.addProduct(product1);
+        inventory.addProduct(product2);
+        inventory.addProduct(product3);
+        inventory.addProduct(product4);
+        
+        // // // // // // // // // // // //
+        // Initializing Observable Lists //
+        // // // // // // // // // // // //
+        
+        ObservableList<Integer> partIDObList = FXCollections.observableArrayList();
+        inventory.getPartsList().iterator().forEachRemaining((n) -> partIDObList.add(n.getPartID()));
+        
+        ObservableList<String> partNameObList = FXCollections.observableArrayList();
+        inventory.getPartsList().iterator().forEachRemaining((n) -> partNameObList.add(n.getName()));
+        
+        ObservableList<Integer> partInvObList = FXCollections.observableArrayList();
+        inventory.getPartsList().iterator().forEachRemaining((n) -> partInvObList.add(n.getInStock()));
+        
+        ObservableList<Double> partPPUObList = FXCollections.observableArrayList();
+        inventory.getPartsList().iterator().forEachRemaining((n) -> partPPUObList.add(n.getPrice()));
+        
+        ObservableList<Integer> productIDObList = FXCollections.observableArrayList();
+        inventory.getProductsList().iterator().forEachRemaining((n) -> productIDObList.add(n.getProductID()));
+        
+        ObservableList<String> productNameObList = FXCollections.observableArrayList();
+        inventory.getProductsList().iterator().forEachRemaining((n) -> productNameObList.add(n.getName()));
+        
+        ObservableList<Integer> productInvObList = FXCollections.observableArrayList();
+        inventory.getProductsList().iterator().forEachRemaining((n) -> productInvObList.add(n.getInStock()));
+        
+        ObservableList<Double> productPPUObList = FXCollections.observableArrayList();
+        inventory.getProductsList().iterator().forEachRemaining((n) -> productPPUObList.add(n.getPrice()));
+        
+        // // // // // // // // // // // //
+        // Initializing Default Values   //
+        // // // // // // // // // // // //
+        
         Insets defaultPadding = new Insets(20);
-        Insets defaultMargin = defaultPadding;
+        Insets defaultMargin = new Insets(20);
 
-        // Start Defining Base Panes
-        //
+        // // // // // // // // // //
+        // Initializing Base Panes //
+        // // // // // // // // // //
 
         BorderPane root = new BorderPane();
         root.setPadding(defaultPadding);
@@ -45,12 +136,10 @@ public class JavaFXPractice extends Application {
 
         BorderPane addProductPane = new BorderPane();
         addProductPane.setPadding(defaultPadding);
-
-        //
-        // Finished Defining Base Panes
-
-        // Start Defining Scenes
-        //
+        
+        // // // // // // // // //
+        // Initializing Scenes  //
+        // // // // // // // // //
 
         Scene mainScene = new Scene(root, 1200, 600);
 
@@ -58,23 +147,21 @@ public class JavaFXPractice extends Application {
 
         Scene addProductScene =  new Scene(addProductPane, 1200, 600);
 
-        //
-        // Finished Defining Scenes
-
-        // Start Filling addPartPane
-        //
-
-        // Inside addPartPane
+        // // // // // // // // // // // // // //
+        // Pane for Adding & Modifying Parts   //
+        // // // // // // // // // // // // // //
+        
         HBox addPartTop = new HBox();
         GridPane addPartGrid = new GridPane();
+        addPartGrid.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, new CornerRadii(10), BorderStroke.THIN)));
         HBox addPartBottom = new HBox(20);
 
         addPartPane.setTop(addPartTop);
         addPartPane.setCenter(addPartGrid);
         addPartPane.setBottom(addPartBottom);
 
-        // Inside addPartTop
         Label addPartHeader = new Label("Add Part");
+        addPartHeader.setStyle("-fx-font: normal bold 18px 'monospace' ");
         HBox.setMargin(addPartHeader, new Insets(0, 40, 20, 20));
 
         ToggleGroup addPartRadio = new ToggleGroup();
@@ -90,9 +177,6 @@ public class JavaFXPractice extends Application {
 
         addPartTop.getChildren().addAll(addPartHeader, addPartRadio1, addPartRadio2);
 
-        // Inside addPartGrid
-        addPartGrid.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, new CornerRadii(10), BorderStroke.THIN)));
-        
         Label addPartIDLBL = new Label("ID");
         addPartIDLBL.setPrefWidth(160);
         GridPane.setMargin(addPartIDLBL, new Insets(20, 0, 10, 20));
@@ -202,7 +286,6 @@ public class JavaFXPractice extends Application {
             }
         });
 
-        // Inside addPartBottom
         addPartBottom.setAlignment(Pos.CENTER_RIGHT);
 
         Button addPartSaveBTN = new Button("Save");
@@ -231,31 +314,29 @@ public class JavaFXPractice extends Application {
         });
 
         addPartBottom.getChildren().addAll(addPartSaveBTN, addPartCancelBTN);
-
-        //
-        // Finished Filling addPartPane
-
-        // Start Filling addProductPane
-        //
-
-        // Inside addProductPane
+        
+        // // // // // // // // // // // // // // //
+        // Pane for Adding & Modifying Products   //
+        // // // // // // // // // // // // // // //
+        
         HBox addProductTop = new HBox();
         GridPane addProductLeft = new GridPane();
         GridPane addProductCenter = new GridPane();
+        addProductCenter.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, new CornerRadii(10), BorderStroke.THIN)));
         HBox addProductBottom = new HBox(20);
+        addProductBottom.setAlignment(Pos.CENTER_RIGHT);
 
         addProductPane.setTop(addProductTop);
         addProductPane.setLeft(addProductLeft);
         addProductPane.setCenter(addProductCenter);
         addProductPane.setBottom(addProductBottom);
 
-        // Inside addProductTop
         Label addProductHeader = new Label("Add Product");
-        addProductHeader.setPadding(new Insets(5, 0, 5, 40));
+        addProductHeader.setStyle("-fx-font: normal bold 18px 'monospace' ");
+        addProductHeader.setPadding(new Insets(0, 0, 0, 20));
 
         addProductTop.getChildren().addAll(addProductHeader);
 
-        // Inside addProductLeft
         Label addProductIDLBL = new Label("ID");
         GridPane.setConstraints(addProductIDLBL, 0, 0, 1, 1, HPos.LEFT, VPos.CENTER);
         GridPane.setMargin(addProductIDLBL, new Insets(100, 5, 5, 5));
@@ -307,24 +388,24 @@ public class JavaFXPractice extends Application {
         addProductLeft.getChildren().addAll(addProductIDLBL, addProductNameLBL, addProductStockLBL, addProductPriceLBL, addProductMaxLBL, addProductMinLBL);
         addProductLeft.getChildren().addAll(addProductIDField, addProductNameField, addProductStockField, addProductPriceField, addProductMaxField, addProductMinField);
 
-        // Inside addProductCenter
-        
         Button addProductSearchBTN = new Button("Search");
-        GridPane.setConstraints(addProductSearchBTN, 1, 0, 1, 1, HPos.RIGHT, VPos.CENTER);
         GridPane.setMargin(addProductSearchBTN, defaultMargin);
+        GridPane.setConstraints(addProductSearchBTN, 0, 0, 2, 1, HPos.RIGHT, VPos.CENTER);
         addProductSearchBTN.setPrefWidth(80);
         
         TextField addProductSearchField = new TextField();
+        GridPane.setMargin(addProductSearchField, new Insets(20, 40, 20, 20));
         GridPane.setConstraints(addProductSearchField, 2, 0, 2, 1);
-        GridPane.setMargin(addProductSearchField, defaultMargin);
         
         Label addProductAddPartIDHeader = new Label("Part ID");
         addProductAddPartIDHeader.setPadding(new Insets(5, 0, 5, 10));
+        GridPane.setMargin(addProductAddPartIDHeader, new Insets(0, 0, 0, 20));
         GridPane.setConstraints(addProductAddPartIDHeader, 0, 1);
         addProductAddPartIDHeader.prefWidthProperty().bind(addProductCenter.widthProperty());
         addProductAddPartIDHeader.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
 
         ListView addProductAddPartIDList = new ListView();
+        GridPane.setMargin(addProductAddPartIDList, new Insets(0, 0, 0, 20));
         GridPane.setConstraints(addProductAddPartIDList, 0, 2);
         
         Label addProductAddPartNameHeader = new Label("Part Name");
@@ -347,25 +428,29 @@ public class JavaFXPractice extends Application {
 
         Label addProductAddPartPPUHeader = new Label("Price per Unit");
         addProductAddPartPPUHeader.setPadding(new Insets(5, 0, 5, 10));
+        GridPane.setMargin(addProductAddPartPPUHeader, new Insets(0, 20, 0, 0));
         GridPane.setConstraints(addProductAddPartPPUHeader, 3, 1);
         addProductAddPartPPUHeader.prefWidthProperty().bind(addProductCenter.widthProperty());
         addProductAddPartPPUHeader.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
 
         ListView addProductAddPartPPUList = new ListView();
+        GridPane.setMargin(addProductAddPartPPUList, new Insets(0, 20, 0, 0));
         GridPane.setConstraints(addProductAddPartPPUList, 3, 2);
 
         Button addProductAddPartBTN = new  Button("Add");
-        GridPane.setConstraints(addProductAddPartBTN, 3, 3, 1, 1, HPos.CENTER, VPos.CENTER);
-        GridPane.setMargin(addProductAddPartBTN, new Insets(10));
+        GridPane.setConstraints(addProductAddPartBTN, 0, 3, 4, 1, HPos.RIGHT, VPos.CENTER);
+        GridPane.setMargin(addProductAddPartBTN, new Insets(10, 40, 10, 40));
         addProductAddPartBTN.setPrefWidth(80);
 
         Label addProductRemovePartIDHeader = new Label("Part ID");
         addProductRemovePartIDHeader.setPadding(new Insets(5, 0, 5, 10));
+        GridPane.setMargin(addProductRemovePartIDHeader, new Insets(0, 0, 0, 20));
         GridPane.setConstraints(addProductRemovePartIDHeader, 0, 5);
         addProductRemovePartIDHeader.prefWidthProperty().bind(addProductCenter.widthProperty());
         addProductRemovePartIDHeader.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
 
         ListView addProductRemovePartIDList = new ListView();
+        GridPane.setMargin(addProductRemovePartIDList, new Insets(0, 0, 0, 20));
         GridPane.setConstraints(addProductRemovePartIDList, 0, 6);
 
         Label addProductRemovePartNameHeader = new Label("Part Name");
@@ -388,16 +473,18 @@ public class JavaFXPractice extends Application {
 
         Label addProductRemovePartPPUHeader = new Label("Price per Unit");
         addProductRemovePartPPUHeader.setPadding(new Insets(5, 0, 5, 10));
+        GridPane.setMargin(addProductRemovePartPPUHeader, new Insets(0, 20, 0, 0));
         GridPane.setConstraints(addProductRemovePartPPUHeader, 3, 5);
         addProductRemovePartPPUHeader.prefWidthProperty().bind(addProductCenter.widthProperty());
         addProductRemovePartPPUHeader.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
 
         ListView addProductRemovePartPPUList = new ListView();
+        GridPane.setMargin(addProductRemovePartPPUList, new Insets(0, 20, 0, 0));
         GridPane.setConstraints(addProductRemovePartPPUList, 3, 6);
 
         Button addProductRemovePartBTN = new Button("Delete");
-        GridPane.setConstraints(addProductRemovePartBTN, 3, 7, 1, 1, HPos.CENTER, VPos.CENTER);
-        GridPane.setMargin(addProductRemovePartBTN, new Insets(10));
+        GridPane.setConstraints(addProductRemovePartBTN, 0, 7, 4, 1, HPos.RIGHT, VPos.CENTER);
+        GridPane.setMargin(addProductRemovePartBTN, new Insets(10, 40, 20, 40));
         addProductRemovePartBTN.setPrefWidth(80);
 
         addProductCenter.getChildren().addAll(addProductSearchBTN, addProductSearchField);
@@ -407,8 +494,8 @@ public class JavaFXPractice extends Application {
         addProductCenter.getChildren().addAll(addProductRemovePartIDList, addProductRemovePartNameList, addProductRemovePartStockList, addProductRemovePartPPUList);
         addProductCenter.getChildren().addAll(addProductAddPartBTN, addProductRemovePartBTN);
 
-        // Inside addProductBottom
         Button addProductSaveBTN = new Button("Save");
+        HBox.setMargin(addProductSaveBTN, new Insets(20, 0, 0, 0));
         addProductSaveBTN.setPrefWidth(80);
         addProductSaveBTN.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -419,7 +506,9 @@ public class JavaFXPractice extends Application {
                 primaryStage.show();
             }
         });
+        
         Button addProductCancelBTN = new Button("Cancel");
+        HBox.setMargin(addProductCancelBTN, new Insets(20, 0, 0, 0));
         addProductCancelBTN.setPrefWidth(80);
         addProductCancelBTN.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -431,14 +520,13 @@ public class JavaFXPractice extends Application {
         });
 
         addProductBottom.getChildren().addAll(addProductSaveBTN, addProductCancelBTN);
-
-        //
-        // Finished Filling addProductPane
-
-        // Start Filling root
-        //
+        
+        // // // // // //
+        // Root Pane   //
+        // // // // // //
 
         Label rootHeader = new Label("Inventory Management System");
+        rootHeader.setStyle("-fx-font: normal bold 18px 'monospace' ");
         rootHeader.setPadding(new Insets(0, 0, 20, 20));
         BorderPane.setAlignment(rootHeader, Pos.CENTER_LEFT);
 
@@ -460,13 +548,7 @@ public class JavaFXPractice extends Application {
         root.setTop(rootHeader);
         root.setCenter(rootCenter);
         root.setBottom(exitBTN);
-
-        //
-        // Finished Filling root
-
-        // Start Filling rootCenter
-        //
-
+        
         BorderPane partPane = new BorderPane();
         partPane.setPadding(defaultPadding);
         partPane.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, new CornerRadii(10), BorderStroke.THIN)));
@@ -479,12 +561,10 @@ public class JavaFXPractice extends Application {
 
         rootCenter.getChildren().addAll(partPane, productPane);
 
-        //
-        // Finished Filling rootCenter
-
-        // Start Filling partPane
-        //
-
+        // // // // // // // // // // // //
+        // Root Pane's Part List Section // 
+        // // // // // // // // // // // //
+        
         HBox partPaneTop = new HBox(10);
         partPaneTop.setPadding(new Insets(0, 0, 0, 0));
         partPaneTop.setAlignment(Pos.CENTER);
@@ -499,130 +579,88 @@ public class JavaFXPractice extends Application {
         partPane.setTop(partPaneTop);
         partPane.setCenter(partListView);
         partPane.setBottom(partPaneBottom);
+        
+        Label partLabel = new Label("Parts");
+        partLabel.setStyle("-fx-font: normal bold 18px 'monospace' ");
+        HBox.setMargin(partLabel, new Insets(0, 60, 0, 20));
 
-        //
-        // Finished Filling partPane
+        Button partSearchBTN = new Button("Search");
+        partSearchBTN.setPrefWidth(80);
+        // Make event to search for part in relevant text field
 
-            // Start Creating partPaneTop
-            //
+        TextField partSearchField = new TextField();
+        HBox.setHgrow(partSearchField, Priority.ALWAYS);
 
-            Label partLabel = new Label("Parts");
-            HBox.setMargin(partLabel, new Insets(0, 60, 0, 20));
+        partPaneTop.getChildren().addAll(partLabel, partSearchBTN, partSearchField);
 
-            Button partSearchBTN = new Button("Search");
-            partSearchBTN.setPrefWidth(80);
-            // Make event to search for part in relevant text field
+        VBox partVBox1 = new VBox();
+        HBox.setHgrow(partVBox1, Priority.ALWAYS);
+        VBox partVBox2 = new VBox();
+        HBox.setHgrow(partVBox2, Priority.ALWAYS);
+        VBox partVBox3 = new VBox();
+        HBox.setHgrow(partVBox3, Priority.ALWAYS);
+        VBox partVBox4 = new VBox();
+        HBox.setHgrow(partVBox4, Priority.ALWAYS);
 
-            TextField partSearchField = new TextField();
-            HBox.setHgrow(partSearchField, Priority.ALWAYS);
+        partListView.getChildren().addAll(partVBox1, partVBox2, partVBox3, partVBox4);
 
-            partPaneTop.getChildren().addAll(partLabel, partSearchBTN, partSearchField);
+        Label firstPartListLabel = new Label("Part ID");
+        firstPartListLabel.setPadding(new Insets(5, 0, 5, 10));
+        firstPartListLabel.prefWidthProperty().bind(partVBox1.widthProperty());
+        firstPartListLabel.setAlignment(Pos.CENTER_LEFT);
+        firstPartListLabel.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
 
-            //
-            // Finished Creating partPaneTop
+        ListView<Integer> partIDListView = new ListView<>(partIDObList);
+        partIDListView.prefHeightProperty().bind(partVBox1.heightProperty());
 
-            // Start Filling partListView
-            //
+        partVBox1.getChildren().addAll(firstPartListLabel, partIDListView);
 
-            VBox partVBox1 = new VBox();
-            HBox.setHgrow(partVBox1, Priority.ALWAYS);
-            VBox partVBox2 = new VBox();
-            HBox.setHgrow(partVBox2, Priority.ALWAYS);
-            VBox partVBox3 = new VBox();
-            HBox.setHgrow(partVBox3, Priority.ALWAYS);
-            VBox partVBox4 = new VBox();
-            HBox.setHgrow(partVBox4, Priority.ALWAYS);
+        Label secondPartListLabel = new Label("Part Name");
+        secondPartListLabel.setPadding(new Insets(5, 0, 5, 10));
+        secondPartListLabel.prefWidthProperty().bind(partVBox2.widthProperty());
+        secondPartListLabel.setAlignment(Pos.CENTER_LEFT);
+        secondPartListLabel.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
 
-            partListView.getChildren().addAll(partVBox1, partVBox2, partVBox3, partVBox4);
+        ObservableList<String> partNameObservableList = FXCollections.observableArrayList("One", "Two", "Three", "Four", "Five");
+        ListView<String> partNameListView = new ListView<>(partNameObservableList);
+        partNameListView.prefHeightProperty().bind(partVBox2.heightProperty());
 
-            //
-            // Finished Filling partListView
+        partVBox2.getChildren().addAll(secondPartListLabel, partNameListView);
 
-                // Start Filling partVBox1
-                //
+        Label thirdPartListLabel = new Label("Inventory Level");
+        thirdPartListLabel.setPadding(new Insets(5, 0, 5, 10));
+        thirdPartListLabel.prefWidthProperty().bind(partVBox3.widthProperty());
+        thirdPartListLabel.setAlignment(Pos.CENTER_LEFT);
+        thirdPartListLabel.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
 
-                Label firstPartListLabel = new Label("Part ID");
-                firstPartListLabel.setPadding(new Insets(5, 0, 5, 10));
-                firstPartListLabel.prefWidthProperty().bind(partVBox1.widthProperty());
-                firstPartListLabel.setAlignment(Pos.CENTER_LEFT);
-                firstPartListLabel.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
+        ObservableList<Integer> partStockObservableList = FXCollections.observableArrayList(5, 5, 25, 10, 10);
+        ListView<Integer> partStockListView = new ListView<>(partStockObservableList);
+        partStockListView.prefHeightProperty().bind(partVBox3.heightProperty());
 
-                ObservableList<Integer> partIDObservableList = FXCollections.observableArrayList(1, 2, 3, 4, 5);
-                ListView<Integer> partIDListView = new ListView<>(partIDObservableList);
-                partIDListView.prefHeightProperty().bind(partVBox1.heightProperty());
+        partVBox3.getChildren().addAll(thirdPartListLabel, partStockListView);
 
-                partVBox1.getChildren().addAll(firstPartListLabel, partIDListView);
+        Label fourthPartListLabel = new Label("Price per Unit");
+        fourthPartListLabel.setPadding(new Insets(5, 0, 5, 10));
+        fourthPartListLabel.prefWidthProperty().bind(partVBox4.widthProperty());
+        fourthPartListLabel.setAlignment(Pos.CENTER_LEFT);
+        fourthPartListLabel.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
 
-                //
-                // Finished Filling partVBox1
+        ObservableList<String> partPPUObservableList = FXCollections.observableArrayList("$5", "$5", "$25", "$10", "$10");
+        ListView<String> partPPUListView = new ListView<>(partPPUObservableList);
+        partPPUListView.prefHeightProperty().bind(partVBox4.heightProperty());
 
-                // Start Filling partVBox2
-                //
+        partVBox4.getChildren().addAll(fourthPartListLabel, partPPUListView);
 
-                Label secondPartListLabel = new Label("Part Name");
-                secondPartListLabel.setPadding(new Insets(5, 0, 5, 10));
-                secondPartListLabel.prefWidthProperty().bind(partVBox2.widthProperty());
-                secondPartListLabel.setAlignment(Pos.CENTER_LEFT);
-                secondPartListLabel.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
+        Button partAddBTN = new Button("Add");
+        partAddBTN.setPrefWidth(80);
+        partAddBTN.setOnAction(new EventHandler<ActionEvent>() {
 
-                ObservableList<String> partNameObservableList = FXCollections.observableArrayList("One", "Two", "Three", "Four", "Five");
-                ListView<String> partNameListView = new ListView<>(partNameObservableList);
-                partNameListView.prefHeightProperty().bind(partVBox2.heightProperty());
-
-                partVBox2.getChildren().addAll(secondPartListLabel, partNameListView);
-
-                //
-                // Finished Filling partVBox2
-
-                // Start Filling partVBox3
-                //
-
-                Label thirdPartListLabel = new Label("Inventory Level");
-                thirdPartListLabel.setPadding(new Insets(5, 0, 5, 10));
-                thirdPartListLabel.prefWidthProperty().bind(partVBox3.widthProperty());
-                thirdPartListLabel.setAlignment(Pos.CENTER_LEFT);
-                thirdPartListLabel.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
-
-                ObservableList<Integer> partStockObservableList = FXCollections.observableArrayList(5, 5, 25, 10, 10);
-                ListView<Integer> partStockListView = new ListView<>(partStockObservableList);
-                partStockListView.prefHeightProperty().bind(partVBox3.heightProperty());
-
-                partVBox3.getChildren().addAll(thirdPartListLabel, partStockListView);
-
-                //
-                // Finished Filling partVBox3
-
-                // Start Filling partVBox4
-                //
-
-                Label fourthPartListLabel = new Label("Price per Unit");
-                fourthPartListLabel.setPadding(new Insets(5, 0, 5, 10));
-                fourthPartListLabel.prefWidthProperty().bind(partVBox4.widthProperty());
-                fourthPartListLabel.setAlignment(Pos.CENTER_LEFT);
-                fourthPartListLabel.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
-
-                ObservableList<String> partPPUObservableList = FXCollections.observableArrayList("$5", "$5", "$25", "$10", "$10");
-                ListView<String> partPPUListView = new ListView<>(partPPUObservableList);
-                partPPUListView.prefHeightProperty().bind(partVBox4.heightProperty());
-
-                partVBox4.getChildren().addAll(fourthPartListLabel, partPPUListView);
-
-                //
-                // Finished Filling partVBox4
-
-            // Start Creating partPaneBottom
-            //
-
-            Button partAddBTN = new Button("Add");
-            partAddBTN.setPrefWidth(80);
-            partAddBTN.setOnAction(new EventHandler<ActionEvent>() {
-
-                @Override
-                public void handle(ActionEvent event) {
-                    primaryStage.setScene(addPartScene);
-                    primaryStage.show();
-                }
-            });
+            @Override
+            public void handle(ActionEvent event) {
+                primaryStage.setScene(addPartScene);
+                primaryStage.show();
+            }
+        });
 
             Button partModifyBTN = new Button("Modify");
             partModifyBTN.setPrefWidth(80);
@@ -635,18 +673,16 @@ public class JavaFXPractice extends Application {
                 }
             });
 
-            Button partDeleteBTN = new Button("Delete");
-            partDeleteBTN.setPrefWidth(80);
-            // Make event, delete selected part
+        Button partDeleteBTN = new Button("Delete");
+        partDeleteBTN.setPrefWidth(80);
+        // Make event, delete selected part
 
-            partPaneBottom.getChildren().addAll(partAddBTN, partModifyBTN, partDeleteBTN);
+        partPaneBottom.getChildren().addAll(partAddBTN, partModifyBTN, partDeleteBTN);
 
-            //
-            // Finished Creating partPaneBottom
-
-        // Start Creating productPane
-        //
-
+        // // // // // // // // // // // // //
+        // Root Pane's Product List Section //
+        // // // // // // // // // // // // //
+        
         HBox productPaneTop = new HBox(10);
         productPaneTop.setPadding(new Insets(0, 0, 0, 0));
         productPaneTop.setAlignment(Pos.CENTER);
@@ -662,159 +698,113 @@ public class JavaFXPractice extends Application {
         productPane.setCenter(productListView);
         productPane.setBottom(productPaneBottom);
 
-        //
-        // Finished Creating productPane
+        Label productLabel = new Label("Products");
+        productLabel.setStyle("-fx-font: normal bold 18px 'monospace' ");
+        HBox.setMargin(productLabel, new Insets(0, 60, 0, 20));
 
-            // Start Creating productPaneTop
-            //
+        Button productSearchBTN = new Button("Search");
+        productSearchBTN.setPrefWidth(80);
+        // Make event to search for product in relevant text field
 
-            Label productLabel = new Label("Products");
-            HBox.setMargin(productLabel, new Insets(0, 60, 0, 20));
+        TextField productSearchField = new TextField();
+        HBox.setHgrow(productSearchField, Priority.ALWAYS);
 
-            Button productSearchBTN = new Button("Search");
-            productSearchBTN.setPrefWidth(80);
-            // Make event to search for product in relevant text field
+        productPaneTop.getChildren().addAll(productLabel, productSearchBTN, productSearchField);
 
-            TextField productSearchField = new TextField();
-            HBox.setHgrow(productSearchField, Priority.ALWAYS);
+        VBox productVBox1 = new VBox();
+        HBox.setHgrow(productVBox1, Priority.ALWAYS);
+        VBox productVBox2 = new VBox();
+        HBox.setHgrow(productVBox2, Priority.ALWAYS);
+        VBox productVBox3 = new VBox();
+        HBox.setHgrow(productVBox3, Priority.ALWAYS);
+        VBox productVBox4 = new VBox();
+        HBox.setHgrow(productVBox4, Priority.ALWAYS);
 
-            productPaneTop.getChildren().addAll(productLabel, productSearchBTN, productSearchField);
+        productListView.getChildren().addAll(productVBox1, productVBox2, productVBox3, productVBox4);
 
-            //
-            // Finished Creating productPaneTop
+        Label firstProductListLabel = new Label("Product ID");
+        firstProductListLabel.setPadding(new Insets(5, 0, 5, 10));
+        firstProductListLabel.prefWidthProperty().bind(productVBox1.widthProperty());
+        firstProductListLabel.setAlignment(Pos.CENTER_LEFT);
+        firstProductListLabel.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
 
-            // Start Filling productListView
-            //
+        ObservableList<Integer> productIDObservableList = FXCollections.observableArrayList(1, 2, 3, 4, 5);
+        ListView<Integer> productIDListView = new ListView<>(productIDObservableList);
+        productIDListView.prefHeightProperty().bind(productVBox1.heightProperty());
 
-            VBox productVBox1 = new VBox();
-            HBox.setHgrow(productVBox1, Priority.ALWAYS);
-            VBox productVBox2 = new VBox();
-            HBox.setHgrow(productVBox2, Priority.ALWAYS);
-            VBox productVBox3 = new VBox();
-            HBox.setHgrow(productVBox3, Priority.ALWAYS);
-            VBox productVBox4 = new VBox();
-            HBox.setHgrow(productVBox4, Priority.ALWAYS);
+        productVBox1.getChildren().addAll(firstProductListLabel, productIDListView);
 
-            productListView.getChildren().addAll(productVBox1, productVBox2, productVBox3, productVBox4);
+        Label secondProductListLabel = new Label("Product Name");
+        secondProductListLabel.setPadding(new Insets(5, 0, 5, 10));
+        secondProductListLabel.prefWidthProperty().bind(productVBox1.widthProperty());
+        secondProductListLabel.setAlignment(Pos.CENTER_LEFT);
+        secondProductListLabel.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
 
-            //
-            // Finished Filling productListView
+        ObservableList<String> productNameObservableList = FXCollections.observableArrayList("One", "Two", "Three", "Four", "Five");
+        ListView<String> productNameListView = new ListView<>(productNameObservableList);
+        productNameListView.prefHeightProperty().bind(productVBox1.heightProperty());
 
-                // Start Filling productVBox1
-                //
+        productVBox2.getChildren().addAll(secondProductListLabel, productNameListView);
 
-                Label firstProductListLabel = new Label("Product ID");
-                firstProductListLabel.setPadding(new Insets(5, 0, 5, 10));
-                firstProductListLabel.prefWidthProperty().bind(productVBox1.widthProperty());
-                firstProductListLabel.setAlignment(Pos.CENTER_LEFT);
-                firstProductListLabel.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
+        Label thirdProductListLabel = new Label("Inventory Level");
+        thirdProductListLabel.setPadding(new Insets(5, 0, 5, 10));
+        thirdProductListLabel.prefWidthProperty().bind(productVBox1.widthProperty());
+        thirdProductListLabel.setAlignment(Pos.CENTER_LEFT);
+        thirdProductListLabel.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
 
-                ObservableList<Integer> productIDObservableList = FXCollections.observableArrayList(1, 2, 3, 4, 5);
-                ListView<Integer> productIDListView = new ListView<>(productIDObservableList);
-                productIDListView.prefHeightProperty().bind(productVBox1.heightProperty());
+        ObservableList<Integer> productStockObservableList = FXCollections.observableArrayList(5, 5, 25, 10, 10);
+        ListView<Integer> productStockListView = new ListView<>(productStockObservableList);
+        productStockListView.prefHeightProperty().bind(productVBox1.heightProperty());
 
-                productVBox1.getChildren().addAll(firstProductListLabel, productIDListView);
+        productVBox3.getChildren().addAll(thirdProductListLabel, productStockListView);
 
-                //
-                // Finished Filling productVBox1
+        Label fourthProductListLabel = new Label("Price per Unit");
+        fourthProductListLabel.setPadding(new Insets(5, 0, 5, 10));
+        fourthProductListLabel.prefWidthProperty().bind(productVBox1.widthProperty());
+        fourthProductListLabel.setAlignment(Pos.CENTER_LEFT);
+        fourthProductListLabel.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
 
-                // Start Filling productVBox2
-                //
+        ObservableList<String> productPPUObservableList = FXCollections.observableArrayList("$5", "$5", "$25", "$10", "$10");
+        ListView<String> productPPUListView = new ListView<>(productPPUObservableList);
+        productPPUListView.prefHeightProperty().bind(productVBox1.heightProperty());
 
-                Label secondProductListLabel = new Label("Product Name");
-                secondProductListLabel.setPadding(new Insets(5, 0, 5, 10));
-                secondProductListLabel.prefWidthProperty().bind(productVBox1.widthProperty());
-                secondProductListLabel.setAlignment(Pos.CENTER_LEFT);
-                secondProductListLabel.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
+        productVBox4.getChildren().addAll(fourthProductListLabel, productPPUListView);
 
-                ObservableList<String> productNameObservableList = FXCollections.observableArrayList("One", "Two", "Three", "Four", "Five");
-                ListView<String> productNameListView = new ListView<>(productNameObservableList);
-                productNameListView.prefHeightProperty().bind(productVBox1.heightProperty());
+        Button productAddBTN = new Button("Add");
+        productAddBTN.setPrefWidth(80);
+        productAddBTN.setOnAction(new EventHandler<ActionEvent>() {
 
-                productVBox2.getChildren().addAll(secondProductListLabel, productNameListView);
+            @Override
+            public void handle(ActionEvent event) {
+                primaryStage.setScene(addProductScene);
+                primaryStage.show();
+            }
+        });
 
-                //
-                // Finished Filling productVBox2
+        Button productModifyBTN = new Button("Modify");
+        productModifyBTN.setPrefWidth(80);
+        productModifyBTN.setOnAction(new EventHandler<ActionEvent>() {
 
-                // Start Filling productVBox3
-                //
+            @Override
+            public void handle(ActionEvent event) {
+                primaryStage.setScene(addProductScene);
+                primaryStage.show();
+            }
+        });
 
-                Label thirdProductListLabel = new Label("Inventory Level");
-                thirdProductListLabel.setPadding(new Insets(5, 0, 5, 10));
-                thirdProductListLabel.prefWidthProperty().bind(productVBox1.widthProperty());
-                thirdProductListLabel.setAlignment(Pos.CENTER_LEFT);
-                thirdProductListLabel.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
+        Button productDeleteBTN = new Button("Delete");
+        productDeleteBTN.setPrefWidth(80);
+        // Make event, delete selected product
 
-                ObservableList<Integer> productStockObservableList = FXCollections.observableArrayList(5, 5, 25, 10, 10);
-                ListView<Integer> productStockListView = new ListView<>(productStockObservableList);
-                productStockListView.prefHeightProperty().bind(productVBox1.heightProperty());
+        productPaneBottom.getChildren().addAll(productAddBTN, productModifyBTN, productDeleteBTN);
 
-                productVBox3.getChildren().addAll(thirdProductListLabel, productStockListView);
-
-                //
-                // Finished Filling productVBox3
-
-                // Start Filling productVBox4
-                //
-
-                Label fourthProductListLabel = new Label("Price per Unit");
-                fourthProductListLabel.setPadding(new Insets(5, 0, 5, 10));
-                fourthProductListLabel.prefWidthProperty().bind(productVBox1.widthProperty());
-                fourthProductListLabel.setAlignment(Pos.CENTER_LEFT);
-                fourthProductListLabel.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
-
-                ObservableList<String> productPPUObservableList = FXCollections.observableArrayList("$5", "$5", "$25", "$10", "$10");
-                ListView<String> productPPUListView = new ListView<>(productPPUObservableList);
-                productPPUListView.prefHeightProperty().bind(productVBox1.heightProperty());
-
-                productVBox4.getChildren().addAll(fourthProductListLabel, productPPUListView);
-
-                //
-                // Finished Filling productVBox4
-
-            // Start Creating productPaneBottom
-            //
-
-            Button productAddBTN = new Button("Add");
-            productAddBTN.setPrefWidth(80);
-            productAddBTN.setOnAction(new EventHandler<ActionEvent>() {
-
-                @Override
-                public void handle(ActionEvent event) {
-                    primaryStage.setScene(addProductScene);
-                    primaryStage.show();
-                }
-            });
-
-            Button productModifyBTN = new Button("Modify");
-            productModifyBTN.setPrefWidth(80);
-            productModifyBTN.setOnAction(new EventHandler<ActionEvent>() {
-
-                @Override
-                public void handle(ActionEvent event) {
-                    primaryStage.setScene(addProductScene);
-                    primaryStage.show();
-                }
-            });
-
-            Button productDeleteBTN = new Button("Delete");
-            productDeleteBTN.setPrefWidth(80);
-            // Make event, delete selected product
-
-            productPaneBottom.getChildren().addAll(productAddBTN, productModifyBTN, productDeleteBTN);
-
-            //
-            // Finished Creating productPaneBottom
-
-        // Start Showing mainScene
-        //
-
+        // // // // // // // // // // // //
+        // Show Main Scene on Primary Stage   //
+        // // // // // // // // // // // //
+        
         primaryStage.setTitle("Inventory Management System");
         primaryStage.setScene(mainScene);
         primaryStage.show();
-
-        //
-        // Finished Showing mainScene
     }
 
     public static void main(String[] args) {
