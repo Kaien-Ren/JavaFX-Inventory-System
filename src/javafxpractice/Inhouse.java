@@ -13,9 +13,11 @@ public class Inhouse extends Part {
             void setMachineID(int number) {
                 this.machineID = number;
             }
+            
             int getMachineID() {
                 return this.machineID;
             }
+            
             Inhouse(int partIDRes, String partNameRes, double partPriceRes, int partStockRes, int partMinRes, int partMaxRes, int partMachIDRes) {
                 this.setPartID(partIDRes);
                 this.setName(partNameRes);

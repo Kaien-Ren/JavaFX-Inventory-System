@@ -62,9 +62,11 @@ public class Part {
             int getPartID(){
                 return this.partID;
             }
+            
             Part() {
                 
             }
+            
             Part(int partIDRes, String partNameRes, double partPriceRes, int partStockRes, int partMinRes, int partMaxRes) {
                 this.setPartID(partIDRes);
                 this.setName(partNameRes);
