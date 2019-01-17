@@ -1,15 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/*****************
+ * @author lethv *
+ *****************/
 
 package javafxpractice;
-
-/**
- *
- * @author lethv
- */
 
 public class Outsourced extends Part {
     
@@ -22,5 +15,14 @@ public class Outsourced extends Part {
             }
             void setCompanyName(String string) {
                 this.companyName = string;
+            }
+            Outsourced(int partIDRes, String partNameRes, double partPriceRes, int partStockRes, int partMinRes, int partMaxRes, String partCompIDRes) {
+                this.setPartID(partIDRes);
+                this.setName(partNameRes);
+                this.setPrice(partPriceRes);
+                this.setInStock(partStockRes);
+                this.setMin(partMinRes);
+                this.setMax(partMaxRes);
+                this.setCompanyName(partCompIDRes);
             }
 }

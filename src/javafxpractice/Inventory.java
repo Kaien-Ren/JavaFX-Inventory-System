@@ -1,8 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/*****************
+ * @author lethv *
+ *****************/
 
 package javafxpractice;
 
@@ -10,62 +8,135 @@ import java.util.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-/**
- *
- * @author lethv
- */
-
 public class Inventory {
     
     private
+            ObservableList<Integer> allPartNumberObList = FXCollections.observableArrayList();
+            ObservableList<String> allPartNameObList = FXCollections.observableArrayList();
+            ObservableList<Integer> allPartInventoryObList = FXCollections.observableArrayList();
+            ObservableList<String> allPartPriceObList = FXCollections.observableArrayList();
+            
+            ObservableList<Integer> allProductNumberObList = FXCollections.observableArrayList();
+            ObservableList<String> allProductNameObList = FXCollections.observableArrayList();
+            ObservableList<Integer> allProductInventoryObList = FXCollections.observableArrayList();
+            ObservableList<String> allProductPriceObList = FXCollections.observableArrayList();
+            
             ArrayList<Product> products = new ArrayList<>();
             ArrayList<Part> allParts = new ArrayList<>();
             
     public
+            ObservableList<Integer> getAllPartNumberObList() {
+                return this.allPartNumberObList;
+            }
+            
+            ObservableList<String> getAllPartNameObList() {
+                return this.allPartNameObList;
+            }
+            
+            ObservableList<Integer> getAllPartInventoryObList() {
+                return this.allPartInventoryObList;
+            }
+            
+            ObservableList<String> getAllPartPriceObList() {
+                return this.allPartPriceObList;
+            }
+            
+            ObservableList<Integer> getAllProductNumberObList() {
+                return this.allProductNumberObList;
+            }
+            
+            ObservableList<String> getAllProductNameObList() {
+                return this.allProductNameObList;
+            }
+            
+            ObservableList<Integer> getAllProductInventoryObList() {
+                return this.allProductInventoryObList;
+            }
+            
+            ObservableList<String> getAllProductPriceObList() {
+                return this.allProductPriceObList;
+            }
+            
             ArrayList<Product> getProductsList() {
                 return this.products;
             }
+            
             ArrayList<Part> getPartsList() {
                 return this.allParts;
             }
+            
             void addProduct(Product product) {
                 products.add(product);
+                updateProductObList();
             }
+            
             boolean removeProduct(int number) {
-                return products.remove(lookUpProduct(number));
+                Product productToRemove = lookUpProduct(number);
+                boolean returnValue = products.remove(productToRemove);
+                updateProductObList();
+                return returnValue;
             }
+            
             Product lookUpProduct(int number) {
-                while (products.iterator().hasNext()) {
-                    Product temporaryProduct = products.iterator().next();
-                    if (number == temporaryProduct.getProductID()) {
+                for (Product temporaryProduct : products) {
+                    if (temporaryProduct.getProductID() == number) {
                         return temporaryProduct;
                     }
                 }
-                Product errorProduct = new Product();
-                return errorProduct;
+                return null;
             }
+            
             void updateProduct(int number) {
-                removeProduct(number);
-                addProduct(lookUpProduct(number));
+                
             }
+            
+            void updateProductObList() {
+                allProductNumberObList.clear();
+                allProductNameObList.clear();
+                allProductInventoryObList.clear();
+                allProductPriceObList.clear();
+                products.iterator().forEachRemaining((n) -> allProductNumberObList.add(n.getProductID()));
+                products.iterator().forEachRemaining((n) -> allProductNameObList.add(n.getName()));
+                products.iterator().forEachRemaining((n) -> allProductInventoryObList.add(n.getInStock()));
+                products.iterator().forEachRemaining((n) -> allProductPriceObList.add("$ " + Double.toString(n.getPrice())));
+            }
+            
             void addPart(Part part){
                 allParts.add(part);
+                updatePartObList();
             }
+            
             boolean deletePart(Part part) {
-                return allParts.remove(part);
+                boolean returnValue = allParts.remove(part);
+                updatePartObList();
+                return returnValue;
             }
+            
             Part lookUpPart(int number) {
-                while (allParts.iterator().hasNext()) {
-                    Part temporaryPart = allParts.iterator().next();
-                    if (number == temporaryPart.getPartID()) {
+                for (Part temporaryPart : allParts) {
+                    if (temporaryPart.getPartID() == number) {
                         return temporaryPart;
                     }
                 }
-                Part errorPart = new Part();
-                return errorPart;
+                return null;
             }
+            
             void updatePart(int number) {
-                deletePart(lookUpPart(number));
-                addPart(lookUpPart(number));
+                
+            }
+            
+            void updatePartObList() {
+                allPartNumberObList.clear();
+                allPartNameObList.clear();
+                allPartInventoryObList.clear();
+                allPartPriceObList.clear();
+                allParts.iterator().forEachRemaining((n) -> allPartNumberObList.add(n.getPartID()));
+                allParts.iterator().forEachRemaining((n) -> allPartNameObList.add(n.getName()));
+                allParts.iterator().forEachRemaining((n) -> allPartInventoryObList.add(n.getInStock()));
+                allParts.iterator().forEachRemaining((n) -> allPartPriceObList.add("$ " + Double.toString(n.getPrice())));
+            }
+            
+            Inventory() {
+                
             }
 }

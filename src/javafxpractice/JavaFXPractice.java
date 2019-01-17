@@ -1,8 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/*****************
+ * @author lethv *
+ *****************/
 
 package javafxpractice;
 
@@ -21,11 +19,6 @@ import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.paint.Color;
 
-/**
- *
- * @author lethv
- */
-
 public class JavaFXPractice extends Application {
 
     @Override
@@ -35,44 +28,22 @@ public class JavaFXPractice extends Application {
         // Initializing Inventory, Products, and Parts  //
         // // // // // // // // // // // // // // // // //
         
+        Part part1 = new Part(1, "One", 1.5, 5, 1, 5);
+        Part part2 = new Part(2, "Two", 3.0, 5, 1, 5);
+        Part part3 = new Part(3, "Three", 4.5, 5, 1, 5);
+        Part part4 = new Part(4, "Four", 6.0, 5, 1, 5);
+        Part part5 = new Part(5, "Five", 9.99, 5, 1, 5);
+        Part part6 = new Part(6, "Six", 100, 5, 1, 5);
+        Part part7 = new Part(7, "Seven", 100, 5, 1, 5);
+        Part part8 = new Part(8, "Eight", 2, 5, 1, 5);
+        Part part9 = new Part(9, "Nine", 2, 5, 1, 5);
+        
+        Product product1 = new Product(1, "Ones", 1.5, 5, 1, 5);
+        Product product2 = new Product(2, "Twos", 2.5, 5, 1, 5);
+        Product product3 = new Product(3, "Threes", 3.5, 5, 1, 5);
+        Product product4 = new Product(4, "Fours", 4.5, 5, 1, 5);
+        
         Inventory inventory = new Inventory();
-        
-        Part part1 = new Part();
-        part1.setPartID(1);
-        Part part2 = new Part();
-        part2.setPartID(2);
-        Part part3 = new Part();
-        part3.setPartID(3);
-        Part part4 = new Part();
-        part4.setPartID(4);
-        Part part5 = new Part();
-        part5.setPartID(5);
-        Part part6 = new Part();
-        part6.setPartID(6);
-        Part part7 = new Part();
-        part7.setPartID(7);
-        Part part8 = new Part();
-        part8.setPartID(8);
-        Part part9 = new Part();
-        part9.setPartID(9);
-        
-        Product product1 = new Product();
-        Product product2 = new Product();
-        Product product3 = new Product();
-        Product product4 = new Product();
-        
-        product1.addAssociatedPart(part1);
-        product1.addAssociatedPart(part2);
-        product1.addAssociatedPart(part3);
-        
-        product2.addAssociatedPart(part4);
-        product2.addAssociatedPart(part5);
-        
-        product3.addAssociatedPart(part6);
-        product3.addAssociatedPart(part7);
-        
-        product4.addAssociatedPart(part8);
-        product4.addAssociatedPart(part9);
         
         inventory.addPart(part1);
         inventory.addPart(part2);
@@ -88,34 +59,6 @@ public class JavaFXPractice extends Application {
         inventory.addProduct(product2);
         inventory.addProduct(product3);
         inventory.addProduct(product4);
-        
-        // // // // // // // // // // // //
-        // Initializing Observable Lists //
-        // // // // // // // // // // // //
-        
-        ObservableList<Integer> partIDObList = FXCollections.observableArrayList();
-        inventory.getPartsList().iterator().forEachRemaining((n) -> partIDObList.add(n.getPartID()));
-        
-        ObservableList<String> partNameObList = FXCollections.observableArrayList();
-        inventory.getPartsList().iterator().forEachRemaining((n) -> partNameObList.add(n.getName()));
-        
-        ObservableList<Integer> partInvObList = FXCollections.observableArrayList();
-        inventory.getPartsList().iterator().forEachRemaining((n) -> partInvObList.add(n.getInStock()));
-        
-        ObservableList<Double> partPPUObList = FXCollections.observableArrayList();
-        inventory.getPartsList().iterator().forEachRemaining((n) -> partPPUObList.add(n.getPrice()));
-        
-        ObservableList<Integer> productIDObList = FXCollections.observableArrayList();
-        inventory.getProductsList().iterator().forEachRemaining((n) -> productIDObList.add(n.getProductID()));
-        
-        ObservableList<String> productNameObList = FXCollections.observableArrayList();
-        inventory.getProductsList().iterator().forEachRemaining((n) -> productNameObList.add(n.getName()));
-        
-        ObservableList<Integer> productInvObList = FXCollections.observableArrayList();
-        inventory.getProductsList().iterator().forEachRemaining((n) -> productInvObList.add(n.getInStock()));
-        
-        ObservableList<Double> productPPUObList = FXCollections.observableArrayList();
-        inventory.getProductsList().iterator().forEachRemaining((n) -> productPPUObList.add(n.getPrice()));
         
         // // // // // // // // // // // //
         // Initializing Default Values   //
@@ -610,7 +553,7 @@ public class JavaFXPractice extends Application {
         firstPartListLabel.setAlignment(Pos.CENTER_LEFT);
         firstPartListLabel.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
 
-        ListView<Integer> partIDListView = new ListView<>(partIDObList);
+        ListView<Integer> partIDListView = new ListView<>(inventory.getAllPartNumberObList());
         partIDListView.prefHeightProperty().bind(partVBox1.heightProperty());
 
         partVBox1.getChildren().addAll(firstPartListLabel, partIDListView);
@@ -621,8 +564,7 @@ public class JavaFXPractice extends Application {
         secondPartListLabel.setAlignment(Pos.CENTER_LEFT);
         secondPartListLabel.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
 
-        ObservableList<String> partNameObservableList = FXCollections.observableArrayList("One", "Two", "Three", "Four", "Five");
-        ListView<String> partNameListView = new ListView<>(partNameObservableList);
+        ListView<String> partNameListView = new ListView<>(inventory.getAllPartNameObList());
         partNameListView.prefHeightProperty().bind(partVBox2.heightProperty());
 
         partVBox2.getChildren().addAll(secondPartListLabel, partNameListView);
@@ -633,8 +575,7 @@ public class JavaFXPractice extends Application {
         thirdPartListLabel.setAlignment(Pos.CENTER_LEFT);
         thirdPartListLabel.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
 
-        ObservableList<Integer> partStockObservableList = FXCollections.observableArrayList(5, 5, 25, 10, 10);
-        ListView<Integer> partStockListView = new ListView<>(partStockObservableList);
+        ListView<Integer> partStockListView = new ListView<>(inventory.getAllPartInventoryObList());
         partStockListView.prefHeightProperty().bind(partVBox3.heightProperty());
 
         partVBox3.getChildren().addAll(thirdPartListLabel, partStockListView);
@@ -645,11 +586,10 @@ public class JavaFXPractice extends Application {
         fourthPartListLabel.setAlignment(Pos.CENTER_LEFT);
         fourthPartListLabel.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
 
-        ObservableList<String> partPPUObservableList = FXCollections.observableArrayList("$5", "$5", "$25", "$10", "$10");
-        ListView<String> partPPUListView = new ListView<>(partPPUObservableList);
-        partPPUListView.prefHeightProperty().bind(partVBox4.heightProperty());
+        ListView<String> allPartPriceListView = new ListView<>(inventory.getAllPartPriceObList());
+        allPartPriceListView.prefHeightProperty().bind(partVBox4.heightProperty());
 
-        partVBox4.getChildren().addAll(fourthPartListLabel, partPPUListView);
+        partVBox4.getChildren().addAll(fourthPartListLabel, allPartPriceListView);
 
         Button partAddBTN = new Button("Add");
         partAddBTN.setPrefWidth(80);
@@ -675,7 +615,13 @@ public class JavaFXPractice extends Application {
 
         Button partDeleteBTN = new Button("Delete");
         partDeleteBTN.setPrefWidth(80);
-        // Make event, delete selected part
+        partDeleteBTN.setOnAction(new EventHandler<ActionEvent>() {
+
+                @Override
+                public void handle(ActionEvent event) {
+                    inventory.deletePart(inventory.lookUpPart(partIDListView.getFocusModel().getFocusedItem()));
+                }
+            });
 
         partPaneBottom.getChildren().addAll(partAddBTN, partModifyBTN, partDeleteBTN);
 

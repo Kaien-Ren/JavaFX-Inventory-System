@@ -1,15 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/*****************
+ * @author lethv *
+ *****************/
 
 package javafxpractice;
-
-/**
- *
- * @author lethv
- */
 
 public class Inhouse extends Part {
     
@@ -22,5 +15,14 @@ public class Inhouse extends Part {
             }
             int getMachineID() {
                 return this.machineID;
+            }
+            Inhouse(int partIDRes, String partNameRes, double partPriceRes, int partStockRes, int partMinRes, int partMaxRes, int partMachIDRes) {
+                this.setPartID(partIDRes);
+                this.setName(partNameRes);
+                this.setPrice(partPriceRes);
+                this.setInStock(partStockRes);
+                this.setMin(partMinRes);
+                this.setMax(partMaxRes);
+                this.setMachineID(partMachIDRes);
             }
 }

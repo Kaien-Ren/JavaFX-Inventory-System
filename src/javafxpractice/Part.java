@@ -1,15 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/*****************
+ * @author lethv *
+ *****************/
 
 package javafxpractice;
-
-/**
- *
- * @author lethv
- */
 
 public class Part {
     
@@ -68,5 +61,16 @@ public class Part {
             
             int getPartID(){
                 return this.partID;
+            }
+            Part() {
+                
+            }
+            Part(int partIDRes, String partNameRes, double partPriceRes, int partStockRes, int partMinRes, int partMaxRes) {
+                this.setPartID(partIDRes);
+                this.setName(partNameRes);
+                this.setPrice(partPriceRes);
+                this.setInStock(partStockRes);
+                this.setMin(partMinRes);
+                this.setMax(partMaxRes);
             }
 }
