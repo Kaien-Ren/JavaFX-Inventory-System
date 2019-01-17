@@ -120,10 +120,10 @@ public class JavaFXPractice extends Application {
 
         addPartTop.getChildren().addAll(addPartHeader, addPartRadio1, addPartRadio2);
 
-        Label addPartIDLBL = new Label("ID");
-        addPartIDLBL.setPrefWidth(160);
-        GridPane.setMargin(addPartIDLBL, new Insets(20, 0, 10, 20));
-        GridPane.setConstraints(addPartIDLBL, 0, 0);
+        Label addPartIDLabel = new Label("ID");
+        addPartIDLabel.setPrefWidth(160);
+        GridPane.setMargin(addPartIDLabel, new Insets(20, 0, 10, 20));
+        GridPane.setConstraints(addPartIDLabel, 0, 0);
 
         TextField addPartIDField = new TextField();
         addPartIDField.setPrefWidth(240);
@@ -131,10 +131,10 @@ public class JavaFXPractice extends Application {
         GridPane.setMargin(addPartIDField, new Insets(20, 20, 10, 0));
         GridPane.setConstraints(addPartIDField, 1, 0);
 
-        Label addPartNameLBL = new Label("Name");
-        addPartNameLBL.setPrefWidth(160);
-        GridPane.setMargin(addPartNameLBL, new Insets(10, 0, 10, 20));
-        GridPane.setConstraints(addPartNameLBL, 0, 1);
+        Label addPartNameLabel = new Label("Name");
+        addPartNameLabel.setPrefWidth(160);
+        GridPane.setMargin(addPartNameLabel, new Insets(10, 0, 10, 20));
+        GridPane.setConstraints(addPartNameLabel, 0, 1);
 
         TextField addPartNameField = new TextField();
         addPartNameField.setPrefWidth(240);
@@ -142,32 +142,32 @@ public class JavaFXPractice extends Application {
         GridPane.setMargin(addPartNameField, new Insets(10, 20, 10, 0));
         GridPane.setConstraints(addPartNameField, 1, 1);
 
-        Label addPartStockLBL = new Label("Inventory");
-        addPartStockLBL.setPadding(new Insets(10, 20, 10, 20));
-        addPartStockLBL.setPrefWidth(160);
-        GridPane.setConstraints(addPartStockLBL, 0, 2);
+        Label addPartInventoryLabel = new Label("Inventory");
+        addPartInventoryLabel.setPadding(new Insets(10, 20, 10, 20));
+        addPartInventoryLabel.setPrefWidth(160);
+        GridPane.setConstraints(addPartInventoryLabel, 0, 2);
 
-        TextField addPartStockField = new TextField();
-        addPartStockField.setPrefWidth(240);
-        GridPane.setHgrow(addPartStockField, Priority.ALWAYS);
-        GridPane.setMargin(addPartStockField, new Insets(10, 20, 10, 0));
-        GridPane.setConstraints(addPartStockField, 1, 2);
+        TextField addPartInventoryField = new TextField();
+        addPartInventoryField.setPrefWidth(240);
+        GridPane.setHgrow(addPartInventoryField, Priority.ALWAYS);
+        GridPane.setMargin(addPartInventoryField, new Insets(10, 20, 10, 0));
+        GridPane.setConstraints(addPartInventoryField, 1, 2);
 
-        Label addPartPPULBL = new Label("Price per Unit");
-        addPartPPULBL.setPadding(new Insets(10, 20, 10, 20));
-        addPartPPULBL.setPrefWidth(160);
-        GridPane.setConstraints(addPartPPULBL, 0, 3);
+        Label addPartPriceLabel = new Label("Price per Unit");
+        addPartPriceLabel.setPadding(new Insets(10, 20, 10, 20));
+        addPartPriceLabel.setPrefWidth(160);
+        GridPane.setConstraints(addPartPriceLabel, 0, 3);
 
-        TextField addPartPPUField = new TextField();
-        addPartPPUField.setPrefWidth(240);
-        GridPane.setHgrow(addPartPPUField, Priority.ALWAYS);
-        GridPane.setMargin(addPartPPUField, new Insets(10, 20, 10, 0));
-        GridPane.setConstraints(addPartPPUField, 1, 3);
+        TextField addPartPriceField = new TextField();
+        addPartPriceField.setPrefWidth(240);
+        GridPane.setHgrow(addPartPriceField, Priority.ALWAYS);
+        GridPane.setMargin(addPartPriceField, new Insets(10, 20, 10, 0));
+        GridPane.setConstraints(addPartPriceField, 1, 3);
 
-        Label addPartMaxLBL = new Label("Max");
-        addPartMaxLBL.setPadding(new Insets(10, 20, 10, 20));
-        addPartMaxLBL.setPrefWidth(160);
-        GridPane.setConstraints(addPartMaxLBL, 0, 4);
+        Label addPartMaxLabel = new Label("Max");
+        addPartMaxLabel.setPadding(new Insets(10, 20, 10, 20));
+        addPartMaxLabel.setPrefWidth(160);
+        GridPane.setConstraints(addPartMaxLabel, 0, 4);
 
         TextField addPartMaxField = new TextField();
         addPartMaxField.setPrefWidth(240);
@@ -175,10 +175,10 @@ public class JavaFXPractice extends Application {
         GridPane.setMargin(addPartMaxField, new Insets(10, 20, 10, 0));
         GridPane.setConstraints(addPartMaxField, 1, 4);
 
-        Label addPartMinLBL = new Label("Min");
-        addPartMinLBL.setPadding(new Insets(10, 20, 10, 20));
-        addPartMinLBL.setPrefWidth(160);
-        GridPane.setConstraints(addPartMinLBL, 0, 5);
+        Label addPartMinLabel = new Label("Min");
+        addPartMinLabel.setPadding(new Insets(10, 20, 10, 20));
+        addPartMinLabel.setPrefWidth(160);
+        GridPane.setConstraints(addPartMinLabel, 0, 5);
 
         TextField addPartMinField = new TextField();
         addPartMinField.setPrefWidth(240);
@@ -186,37 +186,37 @@ public class JavaFXPractice extends Application {
         GridPane.setMargin(addPartMinField, new Insets(10, 20, 10, 0));
         GridPane.setConstraints(addPartMinField, 1, 5);
 
-        Label addPartMachIDLBL = new Label("Machine ID");
-        addPartMachIDLBL.setPadding(new Insets(10, 20, 20, 20));
-        addPartMachIDLBL.setPrefWidth(160);
-        GridPane.setConstraints(addPartMachIDLBL, 0, 6);
+        Label addPartMachineIDLabel = new Label("Machine ID");
+        addPartMachineIDLabel.setPadding(new Insets(10, 20, 20, 20));
+        addPartMachineIDLabel.setPrefWidth(160);
+        GridPane.setConstraints(addPartMachineIDLabel, 0, 6);
 
-        TextField addPartMachIDField = new TextField();
-        addPartMachIDField.setPrefWidth(240);
-        GridPane.setHgrow(addPartMachIDField, Priority.ALWAYS);
-        GridPane.setMargin(addPartMachIDField, new Insets(10, 20, 20, 0));
-        GridPane.setConstraints(addPartMachIDField, 1, 6);
+        TextField addPartMachineIDField = new TextField();
+        addPartMachineIDField.setPrefWidth(240);
+        GridPane.setHgrow(addPartMachineIDField, Priority.ALWAYS);
+        GridPane.setMargin(addPartMachineIDField, new Insets(10, 20, 20, 0));
+        GridPane.setConstraints(addPartMachineIDField, 1, 6);
 
-        Label addPartCompNameLBL = new Label("Company Name");
-        addPartCompNameLBL.setPadding(new Insets(10, 20, 20, 20));
-        addPartCompNameLBL.setPrefWidth(160);
-        GridPane.setConstraints(addPartCompNameLBL, 0, 6);
+        Label addPartCompanyNameLabel = new Label("Company Name");
+        addPartCompanyNameLabel.setPadding(new Insets(10, 20, 20, 20));
+        addPartCompanyNameLabel.setPrefWidth(160);
+        GridPane.setConstraints(addPartCompanyNameLabel, 0, 6);
 
-        TextField addPartCompNameField = new TextField();
-        addPartCompNameField.setPrefWidth(240);
-        GridPane.setHgrow(addPartCompNameField, Priority.ALWAYS);
-        GridPane.setMargin(addPartCompNameField, new Insets(10, 20, 20, 0));
-        GridPane.setConstraints(addPartCompNameField, 1, 6);
+        TextField addPartCompanyNameField = new TextField();
+        addPartCompanyNameField.setPrefWidth(240);
+        GridPane.setHgrow(addPartCompanyNameField, Priority.ALWAYS);
+        GridPane.setMargin(addPartCompanyNameField, new Insets(10, 20, 20, 0));
+        GridPane.setConstraints(addPartCompanyNameField, 1, 6);
 
-        addPartGrid.getChildren().addAll(addPartIDField, addPartNameField, addPartStockField, addPartPPUField, addPartMaxField, addPartMinField, addPartMachIDField);
-        addPartGrid.getChildren().addAll(addPartIDLBL, addPartNameLBL, addPartStockLBL, addPartPPULBL, addPartMaxLBL, addPartMinLBL, addPartMachIDLBL);
+        addPartGrid.getChildren().addAll(addPartIDField, addPartNameField, addPartInventoryField, addPartPriceField, addPartMaxField, addPartMinField, addPartMachineIDField);
+        addPartGrid.getChildren().addAll(addPartIDLabel, addPartNameLabel, addPartInventoryLabel, addPartPriceLabel, addPartMaxLabel, addPartMinLabel, addPartMachineIDLabel);
 
         addPartRadio1.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent event) {
-                addPartGrid.getChildren().removeAll(addPartCompNameLBL, addPartCompNameField);
-                addPartGrid.getChildren().addAll(addPartMachIDLBL, addPartMachIDField);
+                addPartGrid.getChildren().removeAll(addPartCompanyNameLabel, addPartCompanyNameField);
+                addPartGrid.getChildren().addAll(addPartMachineIDLabel, addPartMachineIDField);
             }
         });
 
@@ -224,8 +224,8 @@ public class JavaFXPractice extends Application {
 
             @Override
             public void handle(ActionEvent event) {
-                addPartGrid.getChildren().removeAll(addPartMachIDLBL, addPartMachIDField);
-                addPartGrid.getChildren().addAll(addPartCompNameLBL, addPartCompNameField);
+                addPartGrid.getChildren().removeAll(addPartMachineIDLabel, addPartMachineIDField);
+                addPartGrid.getChildren().addAll(addPartCompanyNameLabel, addPartCompanyNameField);
             }
         });
 
@@ -238,7 +238,20 @@ public class JavaFXPractice extends Application {
 
             @Override
             public void handle(ActionEvent event) {
-                // Add Part to Relevant ArrayList
+                int partToAddID = Integer.parseInt(addPartIDField.getCharacters().toString());
+                addPartIDField.clear();
+                String partToAddName = addPartNameField.getCharacters().toString();
+                addPartNameField.clear();
+                Double partToAddPrice = Double.parseDouble(addPartPriceField.getCharacters().toString());
+                addPartPriceField.clear();
+                int partToAddInventory = Integer.parseInt(addPartInventoryField.getCharacters().toString());
+                addPartInventoryField.clear();
+                int partToAddMin = Integer.parseInt(addPartMinField.getCharacters().toString());
+                addPartMinField.clear();
+                int partToAddMax = Integer.parseInt(addPartMaxField.getCharacters().toString());
+                addPartMaxField.clear();
+                Part partToAdd = new Part(partToAddID, partToAddName, partToAddPrice, partToAddInventory, partToAddMin, partToAddMax);
+                inventory.addPart(partToAdd);
                 primaryStage.setScene(mainScene);
                 primaryStage.show();
             }
@@ -251,6 +264,7 @@ public class JavaFXPractice extends Application {
 
             @Override
             public void handle(ActionEvent event) {
+                inventory.updatePart(1);
                 primaryStage.setScene(mainScene);
                 primaryStage.show();
             }
@@ -280,56 +294,56 @@ public class JavaFXPractice extends Application {
 
         addProductTop.getChildren().addAll(addProductHeader);
 
-        Label addProductIDLBL = new Label("ID");
-        GridPane.setConstraints(addProductIDLBL, 0, 0, 1, 1, HPos.LEFT, VPos.CENTER);
-        GridPane.setMargin(addProductIDLBL, new Insets(100, 5, 5, 5));
+        Label addProductIDLabel = new Label("ID");
+        GridPane.setConstraints(addProductIDLabel, 0, 0, 1, 1, HPos.LEFT, VPos.CENTER);
+        GridPane.setMargin(addProductIDLabel, new Insets(100, 5, 5, 5));
 
         TextField addProductIDField = new TextField();
         GridPane.setConstraints(addProductIDField, 1, 0, 1, 1, HPos.LEFT, VPos.CENTER);
         GridPane.setMargin(addProductIDField, new Insets(100, 60, 5, 5));
 
-        Label addProductNameLBL = new Label("Name");
-        GridPane.setConstraints(addProductNameLBL, 0, 1, 1, 1, HPos.LEFT, VPos.CENTER);
-        GridPane.setMargin(addProductNameLBL, new Insets(5));
+        Label addProductNameLabel = new Label("Name");
+        GridPane.setConstraints(addProductNameLabel, 0, 1, 1, 1, HPos.LEFT, VPos.CENTER);
+        GridPane.setMargin(addProductNameLabel, new Insets(5));
 
         TextField addProductNameField = new TextField();
         GridPane.setConstraints(addProductNameField, 1, 1, 1, 1, HPos.LEFT, VPos.CENTER);
         GridPane.setMargin(addProductNameField, new Insets(5, 60, 5, 5));
 
-        Label addProductStockLBL = new Label("Inventory");
-        GridPane.setConstraints(addProductStockLBL, 0, 2, 1, 1, HPos.LEFT, VPos.CENTER);
-        GridPane.setMargin(addProductStockLBL, new Insets(5));
+        Label addProductInventoryLabel = new Label("Inventory");
+        GridPane.setConstraints(addProductInventoryLabel, 0, 2, 1, 1, HPos.LEFT, VPos.CENTER);
+        GridPane.setMargin(addProductInventoryLabel, new Insets(5));
 
-        TextField addProductStockField = new TextField();
-        GridPane.setConstraints(addProductStockField, 1, 2, 1, 1, HPos.LEFT, VPos.CENTER);
-        GridPane.setMargin(addProductStockField, new Insets(5, 60, 5, 5));
+        TextField addProductInventoryField = new TextField();
+        GridPane.setConstraints(addProductInventoryField, 1, 2, 1, 1, HPos.LEFT, VPos.CENTER);
+        GridPane.setMargin(addProductInventoryField, new Insets(5, 60, 5, 5));
 
-        Label addProductPriceLBL = new Label("Price");
-        GridPane.setConstraints(addProductPriceLBL, 0, 3, 1, 1, HPos.LEFT, VPos.CENTER);
-        GridPane.setMargin(addProductPriceLBL, new Insets(5));
+        Label addProductPriceLabel = new Label("Price");
+        GridPane.setConstraints(addProductPriceLabel, 0, 3, 1, 1, HPos.LEFT, VPos.CENTER);
+        GridPane.setMargin(addProductPriceLabel, new Insets(5));
 
         TextField addProductPriceField = new TextField();
         GridPane.setConstraints(addProductPriceField, 1, 3, 1, 1, HPos.LEFT, VPos.CENTER);
         GridPane.setMargin(addProductPriceField, new Insets(5, 60, 5, 5));
 
-        Label addProductMaxLBL = new Label("Max");
-        GridPane.setConstraints(addProductMaxLBL, 0, 4, 1, 1, HPos.LEFT, VPos.CENTER);
-        GridPane.setMargin(addProductMaxLBL, new Insets(5));
+        Label addProductMaxLabel = new Label("Max");
+        GridPane.setConstraints(addProductMaxLabel, 0, 4, 1, 1, HPos.LEFT, VPos.CENTER);
+        GridPane.setMargin(addProductMaxLabel, new Insets(5));
 
         TextField addProductMaxField = new TextField();
         GridPane.setConstraints(addProductMaxField, 1, 4, 1, 1, HPos.LEFT, VPos.CENTER);
         GridPane.setMargin(addProductMaxField, new Insets(5, 60, 5, 5));
 
-        Label addProductMinLBL = new Label("Min");
-        GridPane.setConstraints(addProductMinLBL, 0, 5, 1, 1, HPos.LEFT, VPos.CENTER);
-        GridPane.setMargin(addProductMinLBL, new Insets(5));
+        Label addProductMinLabel = new Label("Min");
+        GridPane.setConstraints(addProductMinLabel, 0, 5, 1, 1, HPos.LEFT, VPos.CENTER);
+        GridPane.setMargin(addProductMinLabel, new Insets(5));
 
         TextField addProductMinField = new TextField();
         GridPane.setConstraints(addProductMinField, 1, 5, 1, 1, HPos.LEFT, VPos.CENTER);
         GridPane.setMargin(addProductMinField, new Insets(5, 60, 5, 5));
 
-        addProductLeft.getChildren().addAll(addProductIDLBL, addProductNameLBL, addProductStockLBL, addProductPriceLBL, addProductMaxLBL, addProductMinLBL);
-        addProductLeft.getChildren().addAll(addProductIDField, addProductNameField, addProductStockField, addProductPriceField, addProductMaxField, addProductMinField);
+        addProductLeft.getChildren().addAll(addProductIDLabel, addProductNameLabel, addProductInventoryLabel, addProductPriceLabel, addProductMaxLabel, addProductMinLabel);
+        addProductLeft.getChildren().addAll(addProductIDField, addProductNameField, addProductInventoryField, addProductPriceField, addProductMaxField, addProductMinField);
 
         Button addProductSearchBTN = new Button("Search");
         GridPane.setMargin(addProductSearchBTN, defaultMargin);
@@ -360,25 +374,25 @@ public class JavaFXPractice extends Application {
         ListView addProductAddPartNameList = new ListView();
         GridPane.setConstraints(addProductAddPartNameList, 1, 2);
 
-        Label addProductAddPartStockHeader = new Label("Inventory Level");
-        addProductAddPartStockHeader.setPadding(new Insets(5, 0, 5, 10));
-        GridPane.setConstraints(addProductAddPartStockHeader, 2, 1);
-        addProductAddPartStockHeader.prefWidthProperty().bind(addProductCenter.widthProperty());
-        addProductAddPartStockHeader.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
+        Label addProductAddPartInventoryHeader = new Label("Inventory Level");
+        addProductAddPartInventoryHeader.setPadding(new Insets(5, 0, 5, 10));
+        GridPane.setConstraints(addProductAddPartInventoryHeader, 2, 1);
+        addProductAddPartInventoryHeader.prefWidthProperty().bind(addProductCenter.widthProperty());
+        addProductAddPartInventoryHeader.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
 
-        ListView addProductAddPartStockList = new ListView();
-        GridPane.setConstraints(addProductAddPartStockList, 2, 2);
+        ListView addProductAddPartInventoryList = new ListView();
+        GridPane.setConstraints(addProductAddPartInventoryList, 2, 2);
 
-        Label addProductAddPartPPUHeader = new Label("Price per Unit");
-        addProductAddPartPPUHeader.setPadding(new Insets(5, 0, 5, 10));
-        GridPane.setMargin(addProductAddPartPPUHeader, new Insets(0, 20, 0, 0));
-        GridPane.setConstraints(addProductAddPartPPUHeader, 3, 1);
-        addProductAddPartPPUHeader.prefWidthProperty().bind(addProductCenter.widthProperty());
-        addProductAddPartPPUHeader.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
+        Label addProductAddPartPriceHeader = new Label("Price per Unit");
+        addProductAddPartPriceHeader.setPadding(new Insets(5, 0, 5, 10));
+        GridPane.setMargin(addProductAddPartPriceHeader, new Insets(0, 20, 0, 0));
+        GridPane.setConstraints(addProductAddPartPriceHeader, 3, 1);
+        addProductAddPartPriceHeader.prefWidthProperty().bind(addProductCenter.widthProperty());
+        addProductAddPartPriceHeader.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
 
-        ListView addProductAddPartPPUList = new ListView();
-        GridPane.setMargin(addProductAddPartPPUList, new Insets(0, 20, 0, 0));
-        GridPane.setConstraints(addProductAddPartPPUList, 3, 2);
+        ListView addProductAddPartPriceList = new ListView();
+        GridPane.setMargin(addProductAddPartPriceList, new Insets(0, 20, 0, 0));
+        GridPane.setConstraints(addProductAddPartPriceList, 3, 2);
 
         Button addProductAddPartBTN = new  Button("Add");
         GridPane.setConstraints(addProductAddPartBTN, 0, 3, 4, 1, HPos.RIGHT, VPos.CENTER);
@@ -405,25 +419,25 @@ public class JavaFXPractice extends Application {
         ListView addProductRemovePartNameList = new ListView();
         GridPane.setConstraints(addProductRemovePartNameList, 1, 6);
 
-        Label addProductRemovePartStockHeader = new Label("Inventory Level");
-        addProductRemovePartStockHeader.setPadding(new Insets(5, 0, 5, 10));
-        GridPane.setConstraints(addProductRemovePartStockHeader, 2, 5);
-        addProductRemovePartStockHeader.prefWidthProperty().bind(addProductCenter.widthProperty());
-        addProductRemovePartStockHeader.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
+        Label addProductRemovePartInventoryHeader = new Label("Inventory Level");
+        addProductRemovePartInventoryHeader.setPadding(new Insets(5, 0, 5, 10));
+        GridPane.setConstraints(addProductRemovePartInventoryHeader, 2, 5);
+        addProductRemovePartInventoryHeader.prefWidthProperty().bind(addProductCenter.widthProperty());
+        addProductRemovePartInventoryHeader.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
 
-        ListView addProductRemovePartStockList = new ListView();
-        GridPane.setConstraints(addProductRemovePartStockList, 2, 6);
+        ListView addProductRemovePartInventoryList = new ListView();
+        GridPane.setConstraints(addProductRemovePartInventoryList, 2, 6);
 
-        Label addProductRemovePartPPUHeader = new Label("Price per Unit");
-        addProductRemovePartPPUHeader.setPadding(new Insets(5, 0, 5, 10));
-        GridPane.setMargin(addProductRemovePartPPUHeader, new Insets(0, 20, 0, 0));
-        GridPane.setConstraints(addProductRemovePartPPUHeader, 3, 5);
-        addProductRemovePartPPUHeader.prefWidthProperty().bind(addProductCenter.widthProperty());
-        addProductRemovePartPPUHeader.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
+        Label addProductRemovePartPriceHeader = new Label("Price per Unit");
+        addProductRemovePartPriceHeader.setPadding(new Insets(5, 0, 5, 10));
+        GridPane.setMargin(addProductRemovePartPriceHeader, new Insets(0, 20, 0, 0));
+        GridPane.setConstraints(addProductRemovePartPriceHeader, 3, 5);
+        addProductRemovePartPriceHeader.prefWidthProperty().bind(addProductCenter.widthProperty());
+        addProductRemovePartPriceHeader.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
 
-        ListView addProductRemovePartPPUList = new ListView();
-        GridPane.setMargin(addProductRemovePartPPUList, new Insets(0, 20, 0, 0));
-        GridPane.setConstraints(addProductRemovePartPPUList, 3, 6);
+        ListView addProductRemovePartPriceList = new ListView();
+        GridPane.setMargin(addProductRemovePartPriceList, new Insets(0, 20, 0, 0));
+        GridPane.setConstraints(addProductRemovePartPriceList, 3, 6);
 
         Button addProductRemovePartBTN = new Button("Delete");
         GridPane.setConstraints(addProductRemovePartBTN, 0, 7, 4, 1, HPos.RIGHT, VPos.CENTER);
@@ -431,10 +445,10 @@ public class JavaFXPractice extends Application {
         addProductRemovePartBTN.setPrefWidth(80);
 
         addProductCenter.getChildren().addAll(addProductSearchBTN, addProductSearchField);
-        addProductCenter.getChildren().addAll(addProductAddPartIDHeader, addProductAddPartNameHeader, addProductAddPartStockHeader, addProductAddPartPPUHeader);
-        addProductCenter.getChildren().addAll(addProductRemovePartIDHeader, addProductRemovePartNameHeader, addProductRemovePartStockHeader, addProductRemovePartPPUHeader);
-        addProductCenter.getChildren().addAll(addProductAddPartIDList, addProductAddPartNameList, addProductAddPartStockList, addProductAddPartPPUList);
-        addProductCenter.getChildren().addAll(addProductRemovePartIDList, addProductRemovePartNameList, addProductRemovePartStockList, addProductRemovePartPPUList);
+        addProductCenter.getChildren().addAll(addProductAddPartIDHeader, addProductAddPartNameHeader, addProductAddPartInventoryHeader, addProductAddPartPriceHeader);
+        addProductCenter.getChildren().addAll(addProductRemovePartIDHeader, addProductRemovePartNameHeader, addProductRemovePartInventoryHeader, addProductRemovePartPriceHeader);
+        addProductCenter.getChildren().addAll(addProductAddPartIDList, addProductAddPartNameList, addProductAddPartInventoryList, addProductAddPartPriceList);
+        addProductCenter.getChildren().addAll(addProductRemovePartIDList, addProductRemovePartNameList, addProductRemovePartInventoryList, addProductRemovePartPriceList);
         addProductCenter.getChildren().addAll(addProductAddPartBTN, addProductRemovePartBTN);
 
         Button addProductSaveBTN = new Button("Save");
@@ -444,7 +458,20 @@ public class JavaFXPractice extends Application {
 
             @Override
             public void handle(ActionEvent event) {
-                // Add Product to Relevant ArrayList
+                int productToAddID = Integer.parseInt(addProductIDField.getCharacters().toString());
+                addProductIDField.clear();
+                String productToAddName = addProductNameField.getCharacters().toString();
+                addProductNameField.clear();
+                Double productToAddPrice = Double.parseDouble(addProductPriceField.getCharacters().toString());
+                addProductPriceField.clear();
+                int productToAddInventory = Integer.parseInt(addProductInventoryField.getCharacters().toString());
+                addProductInventoryField.clear();
+                int productToAddMin = Integer.parseInt(addProductMinField.getCharacters().toString());
+                addProductMinField.clear();
+                int productToAddMax = Integer.parseInt(addProductMaxField.getCharacters().toString());
+                addProductMaxField.clear();
+                Part productToAdd = new Part(productToAddID, productToAddName, productToAddPrice, productToAddInventory, productToAddMin, productToAddMax);
+                inventory.addPart(productToAdd);
                 primaryStage.setScene(mainScene);
                 primaryStage.show();
             }
@@ -547,49 +574,49 @@ public class JavaFXPractice extends Application {
 
         partListView.getChildren().addAll(partVBox1, partVBox2, partVBox3, partVBox4);
 
-        Label firstPartListLabel = new Label("Part ID");
-        firstPartListLabel.setPadding(new Insets(5, 0, 5, 10));
-        firstPartListLabel.prefWidthProperty().bind(partVBox1.widthProperty());
-        firstPartListLabel.setAlignment(Pos.CENTER_LEFT);
-        firstPartListLabel.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
+        Label partIDLabel = new Label("Part ID");
+        partIDLabel.setPadding(new Insets(5, 0, 5, 10));
+        partIDLabel.prefWidthProperty().bind(partVBox1.widthProperty());
+        partIDLabel.setAlignment(Pos.CENTER_LEFT);
+        partIDLabel.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
 
         ListView<Integer> partIDListView = new ListView<>(inventory.getAllPartNumberObList());
         partIDListView.prefHeightProperty().bind(partVBox1.heightProperty());
 
-        partVBox1.getChildren().addAll(firstPartListLabel, partIDListView);
+        partVBox1.getChildren().addAll(partIDLabel, partIDListView);
 
-        Label secondPartListLabel = new Label("Part Name");
-        secondPartListLabel.setPadding(new Insets(5, 0, 5, 10));
-        secondPartListLabel.prefWidthProperty().bind(partVBox2.widthProperty());
-        secondPartListLabel.setAlignment(Pos.CENTER_LEFT);
-        secondPartListLabel.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
+        Label partNameLabel = new Label("Part Name");
+        partNameLabel.setPadding(new Insets(5, 0, 5, 10));
+        partNameLabel.prefWidthProperty().bind(partVBox2.widthProperty());
+        partNameLabel.setAlignment(Pos.CENTER_LEFT);
+        partNameLabel.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
 
         ListView<String> partNameListView = new ListView<>(inventory.getAllPartNameObList());
         partNameListView.prefHeightProperty().bind(partVBox2.heightProperty());
 
-        partVBox2.getChildren().addAll(secondPartListLabel, partNameListView);
+        partVBox2.getChildren().addAll(partNameLabel, partNameListView);
 
-        Label thirdPartListLabel = new Label("Inventory Level");
-        thirdPartListLabel.setPadding(new Insets(5, 0, 5, 10));
-        thirdPartListLabel.prefWidthProperty().bind(partVBox3.widthProperty());
-        thirdPartListLabel.setAlignment(Pos.CENTER_LEFT);
-        thirdPartListLabel.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
+        Label partInventoryLabel = new Label("Inventory Level");
+        partInventoryLabel.setPadding(new Insets(5, 0, 5, 10));
+        partInventoryLabel.prefWidthProperty().bind(partVBox3.widthProperty());
+        partInventoryLabel.setAlignment(Pos.CENTER_LEFT);
+        partInventoryLabel.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
 
-        ListView<Integer> partStockListView = new ListView<>(inventory.getAllPartInventoryObList());
-        partStockListView.prefHeightProperty().bind(partVBox3.heightProperty());
+        ListView<Integer> partInventoryListView = new ListView<>(inventory.getAllPartInventoryObList());
+        partInventoryListView.prefHeightProperty().bind(partVBox3.heightProperty());
 
-        partVBox3.getChildren().addAll(thirdPartListLabel, partStockListView);
+        partVBox3.getChildren().addAll(partInventoryLabel, partInventoryListView);
 
-        Label fourthPartListLabel = new Label("Price per Unit");
-        fourthPartListLabel.setPadding(new Insets(5, 0, 5, 10));
-        fourthPartListLabel.prefWidthProperty().bind(partVBox4.widthProperty());
-        fourthPartListLabel.setAlignment(Pos.CENTER_LEFT);
-        fourthPartListLabel.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
+        Label partPriceLabel = new Label("Price per Unit");
+        partPriceLabel.setPadding(new Insets(5, 0, 5, 10));
+        partPriceLabel.prefWidthProperty().bind(partVBox4.widthProperty());
+        partPriceLabel.setAlignment(Pos.CENTER_LEFT);
+        partPriceLabel.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
 
         ListView<String> allPartPriceListView = new ListView<>(inventory.getAllPartPriceObList());
         allPartPriceListView.prefHeightProperty().bind(partVBox4.heightProperty());
 
-        partVBox4.getChildren().addAll(fourthPartListLabel, allPartPriceListView);
+        partVBox4.getChildren().addAll(partPriceLabel, allPartPriceListView);
 
         Button partAddBTN = new Button("Add");
         partAddBTN.setPrefWidth(80);
@@ -668,53 +695,49 @@ public class JavaFXPractice extends Application {
 
         productListView.getChildren().addAll(productVBox1, productVBox2, productVBox3, productVBox4);
 
-        Label firstProductListLabel = new Label("Product ID");
-        firstProductListLabel.setPadding(new Insets(5, 0, 5, 10));
-        firstProductListLabel.prefWidthProperty().bind(productVBox1.widthProperty());
-        firstProductListLabel.setAlignment(Pos.CENTER_LEFT);
-        firstProductListLabel.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
+        Label productIDLabel = new Label("Product ID");
+        productIDLabel.setPadding(new Insets(5, 0, 5, 10));
+        productIDLabel.prefWidthProperty().bind(productVBox1.widthProperty());
+        productIDLabel.setAlignment(Pos.CENTER_LEFT);
+        productIDLabel.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
 
-        ObservableList<Integer> productIDObservableList = FXCollections.observableArrayList(1, 2, 3, 4, 5);
-        ListView<Integer> productIDListView = new ListView<>(productIDObservableList);
+        ListView<Integer> productIDListView = new ListView<>(inventory.allProductNumberObList);
         productIDListView.prefHeightProperty().bind(productVBox1.heightProperty());
 
-        productVBox1.getChildren().addAll(firstProductListLabel, productIDListView);
+        productVBox1.getChildren().addAll(productIDLabel, productIDListView);
 
-        Label secondProductListLabel = new Label("Product Name");
-        secondProductListLabel.setPadding(new Insets(5, 0, 5, 10));
-        secondProductListLabel.prefWidthProperty().bind(productVBox1.widthProperty());
-        secondProductListLabel.setAlignment(Pos.CENTER_LEFT);
-        secondProductListLabel.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
+        Label productNameLabel = new Label("Product Name");
+        productNameLabel.setPadding(new Insets(5, 0, 5, 10));
+        productNameLabel.prefWidthProperty().bind(productVBox1.widthProperty());
+        productNameLabel.setAlignment(Pos.CENTER_LEFT);
+        productNameLabel.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
 
-        ObservableList<String> productNameObservableList = FXCollections.observableArrayList("One", "Two", "Three", "Four", "Five");
-        ListView<String> productNameListView = new ListView<>(productNameObservableList);
+        ListView<String> productNameListView = new ListView<>(inventory.getAllProductNameObList());
         productNameListView.prefHeightProperty().bind(productVBox1.heightProperty());
 
-        productVBox2.getChildren().addAll(secondProductListLabel, productNameListView);
+        productVBox2.getChildren().addAll(productNameLabel, productNameListView);
 
-        Label thirdProductListLabel = new Label("Inventory Level");
-        thirdProductListLabel.setPadding(new Insets(5, 0, 5, 10));
-        thirdProductListLabel.prefWidthProperty().bind(productVBox1.widthProperty());
-        thirdProductListLabel.setAlignment(Pos.CENTER_LEFT);
-        thirdProductListLabel.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
+        Label productInventoryLabel = new Label("Inventory Level");
+        productInventoryLabel.setPadding(new Insets(5, 0, 5, 10));
+        productInventoryLabel.prefWidthProperty().bind(productVBox1.widthProperty());
+        productInventoryLabel.setAlignment(Pos.CENTER_LEFT);
+        productInventoryLabel.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
 
-        ObservableList<Integer> productStockObservableList = FXCollections.observableArrayList(5, 5, 25, 10, 10);
-        ListView<Integer> productStockListView = new ListView<>(productStockObservableList);
+        ListView<Integer> productStockListView = new ListView<>(inventory.getAllProductInventoryObList());
         productStockListView.prefHeightProperty().bind(productVBox1.heightProperty());
 
-        productVBox3.getChildren().addAll(thirdProductListLabel, productStockListView);
+        productVBox3.getChildren().addAll(productInventoryLabel, productStockListView);
 
-        Label fourthProductListLabel = new Label("Price per Unit");
-        fourthProductListLabel.setPadding(new Insets(5, 0, 5, 10));
-        fourthProductListLabel.prefWidthProperty().bind(productVBox1.widthProperty());
-        fourthProductListLabel.setAlignment(Pos.CENTER_LEFT);
-        fourthProductListLabel.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
+        Label productPriceLabel = new Label("Price per Unit");
+        productPriceLabel.setPadding(new Insets(5, 0, 5, 10));
+        productPriceLabel.prefWidthProperty().bind(productVBox1.widthProperty());
+        productPriceLabel.setAlignment(Pos.CENTER_LEFT);
+        productPriceLabel.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
 
-        ObservableList<String> productPPUObservableList = FXCollections.observableArrayList("$5", "$5", "$25", "$10", "$10");
-        ListView<String> productPPUListView = new ListView<>(productPPUObservableList);
+        ListView<String> productPPUListView = new ListView<>(inventory.getAllProductPriceObList());
         productPPUListView.prefHeightProperty().bind(productVBox1.heightProperty());
 
-        productVBox4.getChildren().addAll(fourthProductListLabel, productPPUListView);
+        productVBox4.getChildren().addAll(productPriceLabel, productPPUListView);
 
         Button productAddBTN = new Button("Add");
         productAddBTN.setPrefWidth(80);
