@@ -5,8 +5,6 @@
 package javafxpractice;
 
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -17,6 +15,7 @@ import javafx.stage.Stage;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
 public class JavaFXPractice extends Application {
@@ -28,15 +27,14 @@ public class JavaFXPractice extends Application {
         // Initializing Inventory, Products, and Parts  //
         // // // // // // // // // // // // // // // // //
         
-        Part part1 = new Part(1, "One", 1.5, 5, 1, 5);
-        Part part2 = new Part(2, "Two", 3.0, 5, 1, 5);
-        Part part3 = new Part(3, "Three", 4.5, 5, 1, 5);
-        Part part4 = new Part(4, "Four", 6.0, 5, 1, 5);
-        Part part5 = new Part(5, "Five", 9.99, 5, 1, 5);
-        Part part6 = new Part(6, "Six", 100, 5, 1, 5);
-        Part part7 = new Part(7, "Seven", 100, 5, 1, 5);
-        Part part8 = new Part(8, "Eight", 2, 5, 1, 5);
-        Part part9 = new Part(9, "Nine", 2, 5, 1, 5);
+        Inhouse part1 = new Inhouse(1, "One", 1.5, 5, 1, 5, 100);
+        Inhouse part2 = new Inhouse(2, "Two", 3.0, 5, 1, 5, 100);
+        Inhouse part3 = new Inhouse(3, "Three", 4.5, 5, 1, 5, 200);
+        Inhouse part4 = new Inhouse(4, "Four", 6.0, 5, 1, 5, 200);
+        Outsourced part5 = new Outsourced(5, "Five", 9.99, 5, 1, 5, "Google");
+        Outsourced part6 = new Outsourced(6, "Six", 100, 5, 1, 5, "Google");
+        Outsourced part7 = new Outsourced(7, "Seven", 100, 5, 1, 5, "Google");
+        Outsourced part8 = new Outsourced(8, "Eight", 2, 5, 1, 5, "Microsoft");
         
         Product product1 = new Product(1, "Ones", 1.5, 5, 1, 5);
         Product product2 = new Product(2, "Twos", 2.5, 5, 1, 5);
@@ -53,7 +51,6 @@ public class JavaFXPractice extends Application {
         inventory.addPart(part6);
         inventory.addPart(part7);
         inventory.addPart(part8);
-        inventory.addPart(part9);
         
         inventory.addProduct(product1);
         inventory.addProduct(product2);
@@ -130,7 +127,10 @@ public class JavaFXPractice extends Application {
         GridPane.setHgrow(addPartIDField, Priority.ALWAYS);
         GridPane.setMargin(addPartIDField, new Insets(20, 20, 10, 0));
         GridPane.setConstraints(addPartIDField, 1, 0);
-
+        addPartIDField.setStyle("-fx-control-inner-background: lightgray;");
+        addPartIDField.setEditable(false);
+        addPartIDField.setDisable(true);
+                
         Label addPartNameLabel = new Label("Name");
         addPartNameLabel.setPrefWidth(160);
         GridPane.setMargin(addPartNameLabel, new Insets(10, 0, 10, 20));
@@ -250,8 +250,18 @@ public class JavaFXPractice extends Application {
                 addPartMinField.clear();
                 int partToAddMax = Integer.parseInt(addPartMaxField.getCharacters().toString());
                 addPartMaxField.clear();
-                Part partToAdd = new Part(partToAddID, partToAddName, partToAddPrice, partToAddInventory, partToAddMin, partToAddMax);
-                inventory.addPart(partToAdd);
+                if (addPartRadio1.isSelected()) {
+                    int partToAddMachineID = Integer.parseInt(addPartMachineIDField.getCharacters().toString());
+                    addPartMachineIDField.clear();
+                    Inhouse inhouseToAdd = new Inhouse(partToAddID, partToAddName, partToAddPrice, partToAddInventory, partToAddMin, partToAddMax, partToAddMachineID);
+                    inventory.addPart(inhouseToAdd);
+                }
+                else {
+                    String partToAddCompanyName = addPartCompanyNameField.getCharacters().toString();
+                    addPartCompanyNameField.clear();
+                    Outsourced outsourcedToAdd = new Outsourced(partToAddID, partToAddName, partToAddPrice, partToAddInventory, partToAddMin, partToAddMax, partToAddCompanyName);
+                    inventory.addPart(outsourcedToAdd);
+                }
                 primaryStage.setScene(mainScene);
                 primaryStage.show();
             }
@@ -470,8 +480,8 @@ public class JavaFXPractice extends Application {
                 addProductMinField.clear();
                 int productToAddMax = Integer.parseInt(addProductMaxField.getCharacters().toString());
                 addProductMaxField.clear();
-                Part productToAdd = new Part(productToAddID, productToAddName, productToAddPrice, productToAddInventory, productToAddMin, productToAddMax);
-                inventory.addPart(productToAdd);
+                Product productToAdd = new Product(productToAddID, productToAddName, productToAddPrice, productToAddInventory, productToAddMin, productToAddMax);
+                inventory.addProduct(productToAdd);
                 primaryStage.setScene(mainScene);
                 primaryStage.show();
             }
@@ -617,6 +627,54 @@ public class JavaFXPractice extends Application {
         allPartPriceListView.prefHeightProperty().bind(partVBox4.heightProperty());
 
         partVBox4.getChildren().addAll(partPriceLabel, allPartPriceListView);
+        
+        // Clicking on any ListView cell selects all relevant cells //
+        partIDListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+                int selectedIndex = partIDListView.getSelectionModel().getSelectedIndex();
+                partNameListView.getSelectionModel().select(selectedIndex);
+                partInventoryListView.getSelectionModel().select(selectedIndex);
+                allPartPriceListView.getSelectionModel().select(selectedIndex);
+            }
+        });
+        
+        // Clicking on any ListView cell selects all relevant cells //
+        partNameListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+                int selectedIndex = partNameListView.getSelectionModel().getSelectedIndex();
+                partIDListView.getSelectionModel().select(selectedIndex);
+                partInventoryListView.getSelectionModel().select(selectedIndex);
+                allPartPriceListView.getSelectionModel().select(selectedIndex);
+            }
+        });
+        
+        // Clicking on any ListView cell selects all relevant cells //
+        partInventoryListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+                int selectedIndex = partInventoryListView.getSelectionModel().getSelectedIndex();
+                partNameListView.getSelectionModel().select(selectedIndex);
+                partIDListView.getSelectionModel().select(selectedIndex);
+                allPartPriceListView.getSelectionModel().select(selectedIndex);
+            }
+        });
+        
+        // Clicking on any ListView cell selects all relevant cells //
+        allPartPriceListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+                int selectedIndex = allPartPriceListView.getSelectionModel().getSelectedIndex();
+                partNameListView.getSelectionModel().select(selectedIndex);
+                partInventoryListView.getSelectionModel().select(selectedIndex);
+                partIDListView.getSelectionModel().select(selectedIndex);
+            }
+        });
 
         Button partAddBTN = new Button("Add");
         partAddBTN.setPrefWidth(80);
@@ -624,6 +682,16 @@ public class JavaFXPractice extends Application {
 
             @Override
             public void handle(ActionEvent event) {
+                int resPartID = 1;
+                for (Part temporaryPart : inventory.allParts) {
+                    if (temporaryPart.getPartID() == resPartID) {
+                        resPartID++;
+                    }
+                    else {
+                        break;
+                    }
+                }
+                addPartIDField.setText(Integer.toString(resPartID));
                 primaryStage.setScene(addPartScene);
                 primaryStage.show();
             }
@@ -635,8 +703,37 @@ public class JavaFXPractice extends Application {
 
                 @Override
                 public void handle(ActionEvent event) {
-                    primaryStage.setScene(addPartScene);
-                    primaryStage.show();
+                    if (partIDListView.getSelectionModel().isSelected(partIDListView.getSelectionModel().getSelectedIndex())) {
+                        Part partToModify = inventory.lookUpPart(partIDListView.getSelectionModel().getSelectedItem());
+                        
+                        if (inventory.isOutsourced(partToModify)) {
+                            Outsourced outsourcedToModify = (Outsourced) partToModify;
+                            addPartIDField.setText(Integer.toString(outsourcedToModify.getPartID()));
+                            addPartNameField.setText(outsourcedToModify.getName());
+                            addPartInventoryField.setText(Integer.toString(outsourcedToModify.getInStock()));
+                            addPartPriceField.setText(Double.toString(outsourcedToModify.getPrice()));
+                            addPartMaxField.setText(Integer.toString(outsourcedToModify.getMax()));
+                            addPartMinField.setText(Integer.toString(outsourcedToModify.getMin()));
+                            addPartCompanyNameField.setText(outsourcedToModify.getCompanyName());
+                            
+                            primaryStage.setScene(addPartScene);
+                            primaryStage.show();
+                        }
+                        
+                        else {
+                            Inhouse inhouseToModify = (Inhouse) partToModify;
+                            addPartIDField.setText(Integer.toString(partToModify.getPartID()));
+                            addPartNameField.setText(partToModify.getName());
+                            addPartInventoryField.setText(Integer.toString(partToModify.getInStock()));
+                            addPartPriceField.setText(Double.toString(partToModify.getPrice()));
+                            addPartMaxField.setText(Integer.toString(partToModify.getMax()));
+                            addPartMinField.setText(Integer.toString(partToModify.getMin()));
+                            addPartMachineIDField.setText(Integer.toString(inhouseToModify.getMachineID()));
+                            
+                            primaryStage.setScene(addPartScene);
+                            primaryStage.show();
+                        }
+                    }
                 }
             });
 
@@ -723,10 +820,10 @@ public class JavaFXPractice extends Application {
         productInventoryLabel.setAlignment(Pos.CENTER_LEFT);
         productInventoryLabel.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
 
-        ListView<Integer> productStockListView = new ListView<>(inventory.getAllProductInventoryObList());
-        productStockListView.prefHeightProperty().bind(productVBox1.heightProperty());
+        ListView<Integer> productInventoryListView = new ListView<>(inventory.getAllProductInventoryObList());
+        productInventoryListView.prefHeightProperty().bind(productVBox1.heightProperty());
 
-        productVBox3.getChildren().addAll(productInventoryLabel, productStockListView);
+        productVBox3.getChildren().addAll(productInventoryLabel, productInventoryListView);
 
         Label productPriceLabel = new Label("Price per Unit");
         productPriceLabel.setPadding(new Insets(5, 0, 5, 10));
@@ -734,10 +831,58 @@ public class JavaFXPractice extends Application {
         productPriceLabel.setAlignment(Pos.CENTER_LEFT);
         productPriceLabel.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
 
-        ListView<String> productPPUListView = new ListView<>(inventory.getAllProductPriceObList());
-        productPPUListView.prefHeightProperty().bind(productVBox1.heightProperty());
+        ListView<String> productPriceListView = new ListView<>(inventory.getAllProductPriceObList());
+        productPriceListView.prefHeightProperty().bind(productVBox1.heightProperty());
 
-        productVBox4.getChildren().addAll(productPriceLabel, productPPUListView);
+        productVBox4.getChildren().addAll(productPriceLabel, productPriceListView);
+        
+        // Clicking on any ListView cell selects all relevant cells //
+        productIDListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+                int selectedIndex = productIDListView.getSelectionModel().getSelectedIndex();
+                productNameListView.getSelectionModel().select(selectedIndex);
+                productInventoryListView.getSelectionModel().select(selectedIndex);
+                productPriceListView.getSelectionModel().select(selectedIndex);
+            }
+        });
+        
+        // Clicking on any ListView cell selects all relevant cells //
+        productNameListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+                int selectedIndex = productNameListView.getSelectionModel().getSelectedIndex();
+                productIDListView.getSelectionModel().select(selectedIndex);
+                productInventoryListView.getSelectionModel().select(selectedIndex);
+                productPriceListView.getSelectionModel().select(selectedIndex);
+            }
+        });
+        
+        // Clicking on any ListView cell selects all relevant cells //
+        productInventoryListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+                int selectedIndex = productInventoryListView.getSelectionModel().getSelectedIndex();
+                productNameListView.getSelectionModel().select(selectedIndex);
+                productIDListView.getSelectionModel().select(selectedIndex);
+                productPriceListView.getSelectionModel().select(selectedIndex);
+            }
+        });
+        
+        // Clicking on any ListView cell selects all relevant cells //
+        productPriceListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+                int selectedIndex = productPriceListView.getSelectionModel().getSelectedIndex();
+                productNameListView.getSelectionModel().select(selectedIndex);
+                productInventoryListView.getSelectionModel().select(selectedIndex);
+                productIDListView.getSelectionModel().select(selectedIndex);
+            }
+        });
 
         Button productAddBTN = new Button("Add");
         productAddBTN.setPrefWidth(80);
@@ -763,7 +908,13 @@ public class JavaFXPractice extends Application {
 
         Button productDeleteBTN = new Button("Delete");
         productDeleteBTN.setPrefWidth(80);
-        // Make event, delete selected product
+        productDeleteBTN.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                inventory.removeProduct(inventory.lookUpProduct(productIDListView.getFocusModel().getFocusedItem()).getProductID());
+            }
+        });
 
         productPaneBottom.getChildren().addAll(productAddBTN, productModifyBTN, productDeleteBTN);
 

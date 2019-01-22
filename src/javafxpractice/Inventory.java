@@ -136,6 +136,15 @@ public class Inventory {
                 allParts.iterator().forEachRemaining((n) -> allPartPriceObList.add("$ " + Double.toString(n.getPrice())));
             }
             
+            boolean isOutsourced(Part part) {
+                if (part instanceof Outsourced) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+            
             Inventory() {
                 
             }
