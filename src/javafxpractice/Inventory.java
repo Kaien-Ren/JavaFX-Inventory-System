@@ -121,6 +121,24 @@ public class Inventory {
                 return null;
             }
             
+            Inhouse lookUpInhouse(int number) {
+                for (Part temporaryPart : allParts) {
+                    if (temporaryPart.getPartID() == number) {
+                        return (Inhouse) temporaryPart;
+                    }
+                }
+                return null;
+            }
+            
+            Outsourced lookUpOutsourced(int number) {
+                for (Part temporaryPart : allParts) {
+                    if (temporaryPart.getPartID() == number) {
+                        return (Outsourced) temporaryPart;
+                    }
+                }
+                return null;
+            }
+            
             void updatePart(int number) {
                 
             }

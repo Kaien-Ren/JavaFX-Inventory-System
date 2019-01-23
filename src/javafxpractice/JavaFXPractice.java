@@ -33,7 +33,7 @@ public class JavaFXPractice extends Application {
         Inhouse part4 = new Inhouse(4, "Four", 6.0, 5, 1, 5, 200);
         Outsourced part5 = new Outsourced(5, "Five", 9.99, 5, 1, 5, "Google");
         Outsourced part6 = new Outsourced(6, "Six", 100, 5, 1, 5, "Google");
-        Outsourced part7 = new Outsourced(7, "Seven", 100, 5, 1, 5, "Google");
+        Outsourced part7 = new Outsourced(7, "Seven", 100, 5, 1, 5, "Microsoft");
         Outsourced part8 = new Outsourced(8, "Eight", 2, 5, 1, 5, "Microsoft");
         
         Product product1 = new Product(1, "Ones", 1.5, 5, 1, 5);
@@ -239,29 +239,54 @@ public class JavaFXPractice extends Application {
             @Override
             public void handle(ActionEvent event) {
                 int partToAddID = Integer.parseInt(addPartIDField.getCharacters().toString());
-                addPartIDField.clear();
                 String partToAddName = addPartNameField.getCharacters().toString();
-                addPartNameField.clear();
                 Double partToAddPrice = Double.parseDouble(addPartPriceField.getCharacters().toString());
-                addPartPriceField.clear();
                 int partToAddInventory = Integer.parseInt(addPartInventoryField.getCharacters().toString());
-                addPartInventoryField.clear();
                 int partToAddMin = Integer.parseInt(addPartMinField.getCharacters().toString());
-                addPartMinField.clear();
                 int partToAddMax = Integer.parseInt(addPartMaxField.getCharacters().toString());
-                addPartMaxField.clear();
-                if (addPartRadio1.isSelected()) {
-                    int partToAddMachineID = Integer.parseInt(addPartMachineIDField.getCharacters().toString());
-                    addPartMachineIDField.clear();
-                    Inhouse inhouseToAdd = new Inhouse(partToAddID, partToAddName, partToAddPrice, partToAddInventory, partToAddMin, partToAddMax, partToAddMachineID);
-                    inventory.addPart(inhouseToAdd);
+                if (addPartRadio1.isDisabled() == false) {
+                    if (addPartRadio1.isSelected()) {
+                        int partToAddMachineID = Integer.parseInt(addPartMachineIDField.getCharacters().toString());
+                        Inhouse inhouseToAdd = new Inhouse(partToAddID, partToAddName, partToAddPrice, partToAddInventory, partToAddMin, partToAddMax, partToAddMachineID);
+                        inventory.addPart(inhouseToAdd);
+                    }
+                    else {
+                        String partToAddCompanyName = addPartCompanyNameField.getCharacters().toString();
+                        Outsourced outsourcedToAdd = new Outsourced(partToAddID, partToAddName, partToAddPrice, partToAddInventory, partToAddMin, partToAddMax, partToAddCompanyName);
+                        inventory.addPart(outsourcedToAdd);
+                    }
                 }
                 else {
-                    String partToAddCompanyName = addPartCompanyNameField.getCharacters().toString();
-                    addPartCompanyNameField.clear();
-                    Outsourced outsourcedToAdd = new Outsourced(partToAddID, partToAddName, partToAddPrice, partToAddInventory, partToAddMin, partToAddMax, partToAddCompanyName);
-                    inventory.addPart(outsourcedToAdd);
+                    Part partToModify = inventory.lookUpPart(Integer.parseInt(addPartIDField.getCharacters().toString()));
+                    if (inventory.isOutsourced(partToModify)) {
+                        inventory.lookUpOutsourced(partToModify.getPartID()).setName(partToAddName);
+                        inventory.lookUpOutsourced(partToModify.getPartID()).setInStock(partToAddInventory);
+                        inventory.lookUpOutsourced(partToModify.getPartID()).setPrice(partToAddPrice);
+                        inventory.lookUpOutsourced(partToModify.getPartID()).setMax(partToAddMax);
+                        inventory.lookUpOutsourced(partToModify.getPartID()).setMin(partToAddMin);
+                        inventory.lookUpOutsourced(partToModify.getPartID()).setCompanyName(addPartCompanyNameField.getCharacters().toString());
+                        inventory.updatePartObList();
+                    }
+                    else {
+                        inventory.lookUpInhouse(partToModify.getPartID()).setName(partToAddName);
+                        inventory.lookUpInhouse(partToModify.getPartID()).setInStock(partToAddInventory);
+                        inventory.lookUpInhouse(partToModify.getPartID()).setPrice(partToAddPrice);
+                        inventory.lookUpInhouse(partToModify.getPartID()).setMax(partToAddMax);
+                        inventory.lookUpInhouse(partToModify.getPartID()).setMin(partToAddMin);
+                        inventory.lookUpInhouse(partToModify.getPartID()).setMachineID(Integer.parseInt(addPartMachineIDField.getCharacters().toString()));
+                        inventory.updatePartObList();
+                    }
                 }
+                addPartIDField.clear();
+                addPartNameField.clear();
+                addPartPriceField.clear();
+                addPartInventoryField.clear();
+                addPartMinField.clear();
+                addPartMaxField.clear();
+                addPartMachineIDField.clear();
+                addPartCompanyNameField.clear();
+                addPartRadio1.setDisable(false);
+                addPartRadio2.setDisable(false);
                 primaryStage.setScene(mainScene);
                 primaryStage.show();
             }
@@ -274,7 +299,16 @@ public class JavaFXPractice extends Application {
 
             @Override
             public void handle(ActionEvent event) {
-                inventory.updatePart(1);
+                addPartIDField.clear();
+                addPartNameField.clear();
+                addPartPriceField.clear();
+                addPartInventoryField.clear();
+                addPartMinField.clear();
+                addPartMaxField.clear();
+                addPartMachineIDField.clear();
+                addPartCompanyNameField.clear();
+                addPartRadio1.setDisable(false);
+                addPartRadio2.setDisable(false);
                 primaryStage.setScene(mainScene);
                 primaryStage.show();
             }
@@ -494,6 +528,12 @@ public class JavaFXPractice extends Application {
 
             @Override
             public void handle(ActionEvent event) {
+                addProductIDField.clear();
+                addProductNameField.clear();
+                addProductPriceField.clear();
+                addProductInventoryField.clear();
+                addProductMinField.clear();
+                addProductMaxField.clear();
                 primaryStage.setScene(mainScene);
                 primaryStage.show();
             }
@@ -566,10 +606,17 @@ public class JavaFXPractice extends Application {
 
         Button partSearchBTN = new Button("Search");
         partSearchBTN.setPrefWidth(80);
-        // Make event to search for part in relevant text field
 
         TextField partSearchField = new TextField();
         HBox.setHgrow(partSearchField, Priority.ALWAYS);
+        
+        partSearchBTN.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                String textToSearch = partSearchField.getCharacters().toString();
+            }
+        });
 
         partPaneTop.getChildren().addAll(partLabel, partSearchBTN, partSearchField);
 
@@ -682,6 +729,7 @@ public class JavaFXPractice extends Application {
 
             @Override
             public void handle(ActionEvent event) {
+                addPartHeader.setText("Add Part");
                 int resPartID = 1;
                 for (Part temporaryPart : inventory.allParts) {
                     if (temporaryPart.getPartID() == resPartID) {
@@ -703,10 +751,13 @@ public class JavaFXPractice extends Application {
 
                 @Override
                 public void handle(ActionEvent event) {
+                    addPartHeader.setText("Modify Part");
                     if (partIDListView.getSelectionModel().isSelected(partIDListView.getSelectionModel().getSelectedIndex())) {
                         Part partToModify = inventory.lookUpPart(partIDListView.getSelectionModel().getSelectedItem());
-                        
                         if (inventory.isOutsourced(partToModify)) {
+                            addPartRadio2.fire();
+                            addPartRadio1.setDisable(true);
+                            addPartRadio2.setDisable(true);
                             Outsourced outsourcedToModify = (Outsourced) partToModify;
                             addPartIDField.setText(Integer.toString(outsourcedToModify.getPartID()));
                             addPartNameField.setText(outsourcedToModify.getName());
@@ -715,12 +766,13 @@ public class JavaFXPractice extends Application {
                             addPartMaxField.setText(Integer.toString(outsourcedToModify.getMax()));
                             addPartMinField.setText(Integer.toString(outsourcedToModify.getMin()));
                             addPartCompanyNameField.setText(outsourcedToModify.getCompanyName());
-                            
                             primaryStage.setScene(addPartScene);
                             primaryStage.show();
                         }
-                        
                         else {
+                            addPartRadio1.fire();
+                            addPartRadio1.setDisable(true);
+                            addPartRadio2.setDisable(true);
                             Inhouse inhouseToModify = (Inhouse) partToModify;
                             addPartIDField.setText(Integer.toString(partToModify.getPartID()));
                             addPartNameField.setText(partToModify.getName());
@@ -729,7 +781,6 @@ public class JavaFXPractice extends Application {
                             addPartMaxField.setText(Integer.toString(partToModify.getMax()));
                             addPartMinField.setText(Integer.toString(partToModify.getMin()));
                             addPartMachineIDField.setText(Integer.toString(inhouseToModify.getMachineID()));
-                            
                             primaryStage.setScene(addPartScene);
                             primaryStage.show();
                         }
