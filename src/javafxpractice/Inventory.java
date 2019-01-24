@@ -70,9 +70,18 @@ public class Inventory {
                 updateProductObList();
             }
             
+            //** Unknown Bug **//
             boolean removeProduct(int number) {
-                Product productToRemove = lookUpProduct(number);
-                boolean returnValue = products.remove(productToRemove);
+                boolean returnValue = false;
+                for (Product product : products) {
+                    if (product.getProductID() == number) {
+                        int indexOf = products.indexOf(product);
+                        this.products.remove(indexOf);
+                    }
+                    else {
+                        
+                    }
+                }
                 updateProductObList();
                 return returnValue;
             }

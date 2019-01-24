@@ -5,6 +5,7 @@
 package javafxpractice;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -36,10 +37,10 @@ public class JavaFXPractice extends Application {
         Outsourced part7 = new Outsourced(7, "Seven", 100, 5, 1, 5, "Microsoft");
         Outsourced part8 = new Outsourced(8, "Eight", 2, 5, 1, 5, "Microsoft");
         
-        Product product1 = new Product(1, "Ones", 1.5, 5, 1, 5);
-        Product product2 = new Product(2, "Twos", 2.5, 5, 1, 5);
-        Product product3 = new Product(3, "Threes", 3.5, 5, 1, 5);
-        Product product4 = new Product(4, "Fours", 4.5, 5, 1, 5);
+        Product product1 = new Product(1, "Ones", 1.5, 5, 1, 5, part1);
+        Product product2 = new Product(2, "Twos", 2.5, 5, 1, 5, part3);
+        Product product3 = new Product(3, "Threes", 3.5, 5, 1, 5, part5);
+        Product product4 = new Product(4, "Fours", 4.5, 5, 1, 5, part7);
         
         Inventory inventory = new Inventory();
         
@@ -128,7 +129,6 @@ public class JavaFXPractice extends Application {
         GridPane.setMargin(addPartIDField, new Insets(20, 20, 10, 0));
         GridPane.setConstraints(addPartIDField, 1, 0);
         addPartIDField.setStyle("-fx-control-inner-background: lightgray;");
-        addPartIDField.setEditable(false);
         addPartIDField.setDisable(true);
                 
         Label addPartNameLabel = new Label("Name");
@@ -345,6 +345,7 @@ public class JavaFXPractice extends Application {
         TextField addProductIDField = new TextField();
         GridPane.setConstraints(addProductIDField, 1, 0, 1, 1, HPos.LEFT, VPos.CENTER);
         GridPane.setMargin(addProductIDField, new Insets(100, 60, 5, 5));
+        addProductIDField.setDisable(true);
 
         Label addProductNameLabel = new Label("Name");
         GridPane.setConstraints(addProductNameLabel, 0, 1, 1, 1, HPos.LEFT, VPos.CENTER);
@@ -405,7 +406,7 @@ public class JavaFXPractice extends Application {
         addProductAddPartIDHeader.prefWidthProperty().bind(addProductCenter.widthProperty());
         addProductAddPartIDHeader.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
 
-        ListView addProductAddPartIDList = new ListView();
+        ListView addProductAddPartIDList = new ListView(inventory.getAllPartNumberObList());
         GridPane.setMargin(addProductAddPartIDList, new Insets(0, 0, 0, 20));
         GridPane.setConstraints(addProductAddPartIDList, 0, 2);
         
@@ -415,7 +416,7 @@ public class JavaFXPractice extends Application {
         addProductAddPartNameHeader.prefWidthProperty().bind(addProductCenter.widthProperty());
         addProductAddPartNameHeader.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
 
-        ListView addProductAddPartNameList = new ListView();
+        ListView addProductAddPartNameList = new ListView(inventory.getAllPartNameObList());
         GridPane.setConstraints(addProductAddPartNameList, 1, 2);
 
         Label addProductAddPartInventoryHeader = new Label("Inventory Level");
@@ -424,7 +425,7 @@ public class JavaFXPractice extends Application {
         addProductAddPartInventoryHeader.prefWidthProperty().bind(addProductCenter.widthProperty());
         addProductAddPartInventoryHeader.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
 
-        ListView addProductAddPartInventoryList = new ListView();
+        ListView addProductAddPartInventoryList = new ListView(inventory.getAllPartInventoryObList());
         GridPane.setConstraints(addProductAddPartInventoryList, 2, 2);
 
         Label addProductAddPartPriceHeader = new Label("Price per Unit");
@@ -434,7 +435,7 @@ public class JavaFXPractice extends Application {
         addProductAddPartPriceHeader.prefWidthProperty().bind(addProductCenter.widthProperty());
         addProductAddPartPriceHeader.setBorder(new Border(new BorderStroke(Color.DARKGREY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
 
-        ListView addProductAddPartPriceList = new ListView();
+        ListView addProductAddPartPriceList = new ListView(inventory.getAllPartPriceObList());
         GridPane.setMargin(addProductAddPartPriceList, new Insets(0, 20, 0, 0));
         GridPane.setConstraints(addProductAddPartPriceList, 3, 2);
 
@@ -503,19 +504,21 @@ public class JavaFXPractice extends Application {
             @Override
             public void handle(ActionEvent event) {
                 int productToAddID = Integer.parseInt(addProductIDField.getCharacters().toString());
-                addProductIDField.clear();
                 String productToAddName = addProductNameField.getCharacters().toString();
-                addProductNameField.clear();
                 Double productToAddPrice = Double.parseDouble(addProductPriceField.getCharacters().toString());
-                addProductPriceField.clear();
                 int productToAddInventory = Integer.parseInt(addProductInventoryField.getCharacters().toString());
-                addProductInventoryField.clear();
-                int productToAddMin = Integer.parseInt(addProductMinField.getCharacters().toString());
-                addProductMinField.clear();
                 int productToAddMax = Integer.parseInt(addProductMaxField.getCharacters().toString());
-                addProductMaxField.clear();
-                Product productToAdd = new Product(productToAddID, productToAddName, productToAddPrice, productToAddInventory, productToAddMin, productToAddMax);
-                inventory.addProduct(productToAdd);
+                int productToAddMin = Integer.parseInt(addProductMinField.getCharacters().toString());
+                
+                Product productToAdd = inventory.lookUpProduct(productToAddID);
+                productToAdd.setName(productToAddName);
+                productToAdd.setPrice(productToAddPrice);
+                productToAdd.setInStock(productToAddInventory);
+                productToAdd.setMax(productToAddMax);
+                productToAdd.setMin(productToAddMin);
+                
+                inventory.updateProductObList();
+                
                 primaryStage.setScene(mainScene);
                 primaryStage.show();
             }
@@ -528,12 +531,20 @@ public class JavaFXPractice extends Application {
 
             @Override
             public void handle(ActionEvent event) {
+                for (Product product : inventory.products) {
+                    if (product.getName() == null) {
+                        System.out.println(product.getProductID());
+                        inventory.removeProduct(product.getProductID());
+                    }
+                }
+                
                 addProductIDField.clear();
                 addProductNameField.clear();
                 addProductPriceField.clear();
                 addProductInventoryField.clear();
                 addProductMinField.clear();
                 addProductMaxField.clear();
+                
                 primaryStage.setScene(mainScene);
                 primaryStage.show();
             }
@@ -609,14 +620,6 @@ public class JavaFXPractice extends Application {
 
         TextField partSearchField = new TextField();
         HBox.setHgrow(partSearchField, Priority.ALWAYS);
-        
-        partSearchBTN.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                String textToSearch = partSearchField.getCharacters().toString();
-            }
-        });
 
         partPaneTop.getChildren().addAll(partLabel, partSearchBTN, partSearchField);
 
@@ -720,6 +723,32 @@ public class JavaFXPractice extends Application {
                 partNameListView.getSelectionModel().select(selectedIndex);
                 partInventoryListView.getSelectionModel().select(selectedIndex);
                 partIDListView.getSelectionModel().select(selectedIndex);
+            }
+        });
+        
+        //** Search Function **//
+        
+        partSearchBTN.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                String textToSearch = partSearchField.getCharacters().toString().toLowerCase();
+                inventory.getAllPartNumberObList().clear();
+                inventory.getAllPartNameObList().clear();
+                inventory.getAllPartInventoryObList().clear();
+                inventory.getAllPartPriceObList().clear();
+                        
+                for (Part partToSearch : inventory.allParts) {
+                    if (partToSearch.getName().toLowerCase().contains(textToSearch)) {
+                        inventory.getAllPartNumberObList().add(partToSearch.getPartID());
+                        inventory.getAllPartNameObList().add(partToSearch.getName());
+                        inventory.getAllPartInventoryObList().add(partToSearch.getInStock());
+                        inventory.getAllPartPriceObList().add("$ " + Double.toString(partToSearch.getPrice()));
+                    }
+                    else {
+                        
+                    }
+                }
             }
         });
 
@@ -941,6 +970,27 @@ public class JavaFXPractice extends Application {
 
             @Override
             public void handle(ActionEvent event) {
+                addProductHeader.setText("Add Product");
+                
+                int resProductID = 1;
+                for (Product temporaryProduct : inventory.products) {
+                    if (temporaryProduct.getProductID() == resProductID) {
+                        resProductID++;
+                    }
+                    else {
+                        break;
+                    }
+                }
+                addProductIDField.setText(Integer.toString(resProductID));
+                
+                Product newProduct = new Product(resProductID);
+                inventory.addProduct(newProduct);
+                
+                addProductRemovePartIDList.setItems(newProduct.getAssociatedPartNumberObList());
+                addProductRemovePartNameList.setItems(newProduct.getAssociatedPartNameObList());
+                addProductRemovePartInventoryList.setItems(newProduct.getAssociatedPartInventoryObList());
+                addProductRemovePartPriceList.setItems(newProduct.getAssociatedPartPriceObList());
+                
                 primaryStage.setScene(addProductScene);
                 primaryStage.show();
             }
@@ -952,6 +1002,22 @@ public class JavaFXPractice extends Application {
 
             @Override
             public void handle(ActionEvent event) {
+                addProductHeader.setText("Modify Product");
+                
+                Product productToModify = inventory.lookUpProduct(productIDListView.getSelectionModel().getSelectedItem());
+                
+                addProductIDField.setText(Integer.toString(productToModify.getProductID()));
+                addProductNameField.setText(productToModify.getName());
+                addProductInventoryField.setText(Integer.toString(productToModify.getInStock()));
+                addProductPriceField.setText(Double.toString(productToModify.getPrice()));
+                addProductMaxField.setText(Integer.toString(productToModify.getMax()));
+                addProductMinField.setText(Integer.toString(productToModify.getMin()));
+                
+                addProductRemovePartIDList.setItems(productToModify.getAssociatedPartNumberObList());
+                addProductRemovePartNameList.setItems(productToModify.getAssociatedPartNameObList());
+                addProductRemovePartInventoryList.setItems(productToModify.getAssociatedPartInventoryObList());
+                addProductRemovePartPriceList.setItems(productToModify.getAssociatedPartPriceObList());
+                
                 primaryStage.setScene(addProductScene);
                 primaryStage.show();
             }
@@ -969,9 +1035,9 @@ public class JavaFXPractice extends Application {
 
         productPaneBottom.getChildren().addAll(productAddBTN, productModifyBTN, productDeleteBTN);
 
-        // // // // // // // // // // // //
-        // Show Main Scene on Primary Stage   //
-        // // // // // // // // // // // //
+        // // // // // // // // // // // // //
+        // Show Main Scene on Primary Stage //
+        // // // // // // // // // // // // //
         
         primaryStage.setTitle("Inventory Management System");
         primaryStage.setScene(mainScene);
