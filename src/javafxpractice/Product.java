@@ -95,7 +95,7 @@ public class Product {
             }
             
             void addAssociatedParts (ArrayList<Part> partsList) {
-                for (Part temporaryPart : this.associatedParts) {
+                for (Part temporaryPart : partsList) {
                     this.addAssociatedPart(temporaryPart);
                 }
             }
@@ -139,13 +139,13 @@ public class Product {
                 this.addAssociatedPart(associatedPartRes);
             }
             
-            Product(int productIDRes, String productNameRes, double productPriceRes, int productStockRes, int productMinRes, int productMaxRes, ArrayList<Part> associatedPartListRes) {
+            Product(int productIDRes, String productNameRes, double productPriceRes, int productStockRes, int productMinRes, int productMaxRes, ArrayList<Part> associatedPartsListRes) {
                 this.setProductID(productIDRes);
                 this.setName(productNameRes);
                 this.setPrice(productPriceRes);
                 this.setInStock(productStockRes);
                 this.setMin(productMinRes);
                 this.setMax(productMaxRes);
-                this.addAssociatedParts(associatedPartListRes);
+                this.addAssociatedParts(associatedPartsListRes);
             }
 }

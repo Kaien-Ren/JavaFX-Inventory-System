@@ -21,10 +21,32 @@ public class Inventory {
             ObservableList<Integer> allProductInventoryObList = FXCollections.observableArrayList();
             ObservableList<String> allProductPriceObList = FXCollections.observableArrayList();
             
+            ObservableList<Integer> temporaryAssociatedPartNumberObList = FXCollections.observableArrayList();
+            ObservableList<String> temporaryAssociatedPartNameObList = FXCollections.observableArrayList();
+            ObservableList<Integer> temporaryAssociatedPartInventoryObList = FXCollections.observableArrayList();
+            ObservableList<String> temporaryAssociatedPartPriceObList = FXCollections.observableArrayList();
+            
             ArrayList<Product> products = new ArrayList<>();
             ArrayList<Part> allParts = new ArrayList<>();
+            ArrayList<Part> temporaryAssociatedParts = new ArrayList<>();
             
     public
+            ObservableList<Integer> getTemporaryAssociatedPartNumberObList() {
+                return this.temporaryAssociatedPartNumberObList;
+            }
+            
+            ObservableList<String> getTemporaryAssociatedPartNameObList() {
+                return this.temporaryAssociatedPartNameObList;
+            }
+            
+            ObservableList<Integer> getTemporaryAssociatedPartInventoryObList() {
+                return this.temporaryAssociatedPartInventoryObList;
+            }
+            
+            ObservableList<String> getTemporaryAssociatedPartPriceObList() {
+                return this.temporaryAssociatedPartPriceObList;
+            }
+                    
             ObservableList<Integer> getAllPartNumberObList() {
                 return this.allPartNumberObList;
             }
@@ -65,23 +87,50 @@ public class Inventory {
                 return this.allParts;
             }
             
+            ArrayList<Part> getTemporaryAssociatedPartsList() {
+                return this.temporaryAssociatedParts;
+            }
+            
+            void addPartToTempList(Part part) {
+                temporaryAssociatedParts.add(part);
+                updateTempList();
+            }
+            
+            void removePartFromTempList(Part part) {
+                temporaryAssociatedParts.remove(part);
+                updateTempList();
+            }
+            
+            void updateTempList() {
+                temporaryAssociatedPartNumberObList.clear();
+                temporaryAssociatedPartNameObList.clear();
+                temporaryAssociatedPartInventoryObList.clear();
+                temporaryAssociatedPartPriceObList.clear();
+                temporaryAssociatedParts.iterator().forEachRemaining((n) -> temporaryAssociatedPartNumberObList.add(n.getPartID()));
+                temporaryAssociatedParts.iterator().forEachRemaining((n) -> temporaryAssociatedPartNameObList.add(n.getName()));
+                temporaryAssociatedParts.iterator().forEachRemaining((n) -> temporaryAssociatedPartInventoryObList.add(n.getInStock()));
+                temporaryAssociatedParts.iterator().forEachRemaining((n) -> temporaryAssociatedPartPriceObList.add("$ " + Double.toString(n.getPrice())));
+            }
+            
             void addProduct(Product product) {
                 products.add(product);
                 updateProductObList();
             }
             
-            //** Unknown Bug **//
             boolean removeProduct(int number) {
-                boolean returnValue = false;
-                for (Product product : products) {
-                    if (product.getProductID() == number) {
-                        int indexOf = products.indexOf(product);
-                        this.products.remove(indexOf);
-                    }
-                    else {
-                        
-                    }
+                if (lookUpProduct(number) != null) {
+                    Product productToRemove = lookUpProduct(number);
+                    removeProduct(productToRemove);
+                    return true;
                 }
+                else {
+                    return false;
+                }
+                
+            }
+            
+            boolean removeProduct(Product product) {
+                boolean returnValue = products.remove(product);
                 updateProductObList();
                 return returnValue;
             }
